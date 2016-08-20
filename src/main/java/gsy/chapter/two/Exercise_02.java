@@ -1,6 +1,6 @@
 package gsy.chapter.two;
 
-public class Exercise_01 {
+public class Exercise_02 {
     private int index;
     private char character;
 
