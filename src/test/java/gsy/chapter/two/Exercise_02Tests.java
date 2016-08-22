@@ -15,17 +15,17 @@ public class Exercise_02Tests {
 
     @Test
     public void shouldReturnZeroWhenGetTheIntergeDefaultValue() {
-        assertEquals(exercise01.getIndex(), 0);
+        assertEquals(0, exercise01.getIndex());
     }
 
     @Test
     public void shouldReturnZeroWhenGetTheCharDefaultValue() {
-        assertEquals(exercise01.getCharacter(), 0);
+        assertEquals(0, exercise01.getCharacter());
     }
 
     @Test
     public void shouldReturnNullWhenGetTheStringDefaultValue() {
-        assertEquals(exercise01.getStrings(), null);
+        assertEquals(null, exercise01.getStrings());
     }
 
     @Test
