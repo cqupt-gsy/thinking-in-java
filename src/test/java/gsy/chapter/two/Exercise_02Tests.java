@@ -26,6 +26,11 @@ public class Exercise_02Tests {
     @Test
     public void shouldReturnNullWhenGetTheStringDefaultValue() {
         assertEquals(exercise01.getStrings(), null);
+    }
+
+    @Test
+    public void shouldReturnZeroPointZeroWhenGetTheFloatDefaultValue() {
+        assertEquals(0.0, exercise01.getFloats(), 1);
 
     }
 }
