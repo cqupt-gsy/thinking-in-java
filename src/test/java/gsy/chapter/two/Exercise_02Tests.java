@@ -19,9 +19,13 @@ public class Exercise_02Tests {
     }
 
     @Test
-    public void shouldReturnEmptyCharWhenGetTheCharDefaultValue() {
+    public void shouldReturnZeroWhenGetTheCharDefaultValue() {
         assertEquals(exercise01.getCharacter(), 0);
     }
 
+    @Test
+    public void shouldReturnNullWhenGetTheStringDefaultValue() {
+        assertEquals(exercise01.getStrings(), null);
 
+    }
 }
