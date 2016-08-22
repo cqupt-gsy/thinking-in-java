@@ -31,6 +31,6 @@ public class Exercise_02Tests {
     @Test
     public void shouldReturnZeroPointZeroWhenGetTheFloatDefaultValue() {
         assertEquals(0.0, exercise01.getFloats(), 1);
-
     }
+
 }
