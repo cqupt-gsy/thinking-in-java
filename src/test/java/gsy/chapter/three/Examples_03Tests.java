@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Examples_03Tests {
     private Examples_03 examples03;
@@ -46,5 +47,11 @@ public class Examples_03Tests {
 
     private void changeTheObjectValueInFunction(Examples_03 examples03) {
         examples03.setIndex(66);
+    }
+
+    @Test
+    public void shouldReturnTureWhenAssignAnObjectToAnotherAndCompareIt() {
+        Examples_03 examples_03 = examples03;
+        assertTrue(examples_03 == examples03);
     }
 }
