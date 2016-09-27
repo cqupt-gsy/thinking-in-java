@@ -54,4 +54,6 @@ public class Examples_03Tests {
         Examples_03 examples_03 = examples03;
         assertTrue(examples_03 == examples03);
     }
+
+
 }
