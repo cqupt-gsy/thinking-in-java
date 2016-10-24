@@ -11,7 +11,7 @@ public class CalculatorTest {
     private Calculator calculator;
     private int firstNumber;
     private int secondNumber;
-    private String operator;
+    private String operatorSimble;
 
     @Before
     public void setUp() throws Exception {
@@ -24,7 +24,7 @@ public class CalculatorTest {
         initalNumberAndOperator(1, 1, "+");
 
         //When
-        int result = calculator.getResults(firstNumber, secondNumber, operator);
+        int result = calculator.getResults(firstNumber, secondNumber, operatorSimble);
 
         //Then
         assertThat(result, is(2));
@@ -37,7 +37,7 @@ public class CalculatorTest {
         initalNumberAndOperator(1, 2, "+");
 
         //When
-        int result = calculator.getResults(firstNumber, secondNumber, operator);
+        int result = calculator.getResults(firstNumber, secondNumber, operatorSimble);
 
         //Then
         assertThat(result, is(3));
@@ -46,13 +46,48 @@ public class CalculatorTest {
     @Test
     public void shouldReturnOneWhenTwoMinusOne() {
         //Given
-
-
+        initalNumberAndOperator(2, 1, "-");
 
         //When
-
+        int result = calculator.getResults(firstNumber, secondNumber, operatorSimble);
 
         //Then
+        assertThat(result, is(1));
+    }
+
+    @Test
+    public void shouldReturnFourWhenTwoMutiplyTwo() {
+        //Given
+        initalNumberAndOperator(2, 2, "*");
+
+        //When
+        int result = calculator.getResults(firstNumber, secondNumber, operatorSimble);
+
+        //Then
+        assertThat(result, is(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIllegalArgumentExcepetionWhenSecondNumberIsZeor() {
+        //Given
+        initalNumberAndOperator(2, 0, "/");
+
+        //When
+        calculator.getResults(firstNumber, secondNumber, operatorSimble);
+
+        //Then
+    }
+
+    @Test
+    public void shouldReturnTwoWhenFourDivTwo() {
+        //Given
+        initalNumberAndOperator(4, 2, "/");
+
+        //When
+        int result =calculator.getResults(firstNumber, secondNumber,operatorSimble);
+
+        //Then
+        assertThat(result, is(2));
 
 
     }
@@ -60,6 +95,6 @@ public class CalculatorTest {
     private void initalNumberAndOperator(int firstNumber, int secondNumber, String operator) {
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
-        this.operator = operator;
+        this.operatorSimble = operator;
     }
 }
