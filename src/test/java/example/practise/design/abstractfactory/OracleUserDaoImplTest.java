@@ -23,4 +23,13 @@ public class OracleUserDaoImplTest {
         //Then
         assertThat(insertResult, is("Oracle Insert User: GSY"));
     }
+
+    @Test
+    public void shouldReturnDeleteString() {
+        //When
+        String deleteResult = oracleUserDao.deleteUser("GSY");
+
+        //Then
+        assertThat(deleteResult, is("Oracle Delete User: GSY"));
+    }
 }
