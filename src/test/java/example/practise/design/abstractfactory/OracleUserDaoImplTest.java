@@ -16,7 +16,7 @@ public class OracleUserDaoImplTest {
     }
 
     @Test
-    public void shouldReturnInsertString() {
+    public void shouldReturnInsertResultString() {
         //When
         String insertResult = oracleUserDao.insertUser("GSY");
 
@@ -25,11 +25,31 @@ public class OracleUserDaoImplTest {
     }
 
     @Test
-    public void shouldReturnDeleteString() {
+    public void shouldReturnDeleteResultString() {
         //When
         String deleteResult = oracleUserDao.deleteUser("GSY");
 
         //Then
         assertThat(deleteResult, is("Oracle Delete User: GSY"));
+    }
+
+    @Test
+    public void shouldReturnUpdateResultString() {
+        //When
+        String updateString = oracleUserDao.updateUser("GSY");
+
+        //Then
+        assertThat(updateString, is("Oracle Update User: GSY"));
+    }
+
+    @Test
+    public void shouldReturnQueryResultString() {
+        //When
+        String queryString = oracleUserDao.quertUser("GSY");
+
+        //Then
+        assertThat(queryString, is("Oracle Query User: GSY"));
+
+
     }
 }
