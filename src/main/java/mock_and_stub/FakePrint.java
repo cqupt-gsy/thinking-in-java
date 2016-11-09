@@ -1,6 +1,6 @@
 package mock_and_stub;
 
-public class FakePrint {
+public class FakePrint implements Print {
     private boolean print;
     private String printString;
 
@@ -8,6 +8,7 @@ public class FakePrint {
         return print;
     }
 
+    @Override
     public void print(String printStr) {
         print = true;
         printString = printStr;

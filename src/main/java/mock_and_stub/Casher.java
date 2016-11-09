@@ -1,9 +1,9 @@
 package mock_and_stub;
 
 public class Casher {
-    private FakePrint print;
+    private Print print;
 
-    public void setPrint(FakePrint print) {
+    public void setPrint(Print print) {
         this.print = print;
     }
 
