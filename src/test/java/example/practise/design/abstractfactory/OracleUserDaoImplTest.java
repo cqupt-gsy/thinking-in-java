@@ -16,39 +16,39 @@ public class OracleUserDaoImplTest {
     }
 
     @Test
-    public void shouldReturnInsertResultString() {
+    public void shouldReturnInsertOracleUserResultString() {
         //When
         String insertResult = oracleUserDao.insertUser("GSY");
 
         //Then
-        assertThat(insertResult, is("Oracle Insert User: GSY"));
+        assertThat(insertResult, is("Oracle Insert User GSY"));
     }
 
     @Test
-    public void shouldReturnDeleteResultString() {
+    public void shouldReturnDeleteOracleUserResultString() {
         //When
         String deleteResult = oracleUserDao.deleteUser("GSY");
 
         //Then
-        assertThat(deleteResult, is("Oracle Delete User: GSY"));
+        assertThat(deleteResult, is("Oracle Delete User GSY"));
     }
 
     @Test
-    public void shouldReturnUpdateResultString() {
+    public void shouldReturnUpdateOracleUserResultString() {
         //When
         String updateString = oracleUserDao.updateUser("GSY");
 
         //Then
-        assertThat(updateString, is("Oracle Update User: GSY"));
+        assertThat(updateString, is("Oracle Update User GSY"));
     }
 
     @Test
-    public void shouldReturnQueryResultString() {
+    public void shouldReturnQueryOracleUserResultString() {
         //When
         String queryString = oracleUserDao.quertUser("GSY");
 
         //Then
-        assertThat(queryString, is("Oracle Query User: GSY"));
+        assertThat(queryString, is("Oracle Query User GSY"));
 
 
     }

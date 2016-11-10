@@ -11,7 +11,6 @@ public class ConstantStrings {
     public static final String UPDATE = "Update ";
     public static final String QUERY = "Query ";
 
-    public static final String USER = "User";
-
-    public static final String COLON = ": ";
+    public static final String USER = "User ";
+    public static final String PRODUCT = "Product ";
 }
