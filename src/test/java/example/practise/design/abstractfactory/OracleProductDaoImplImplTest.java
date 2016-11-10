@@ -8,17 +8,17 @@ import static org.junit.Assert.assertThat;
 
 public class OracleProductDaoImplImplTest {
 
-    private OracleProductDaoImpl oracleProductDaoImpl;
+    private ProductDao productDao;
 
     @Before
     public void setUp() throws Exception {
-        oracleProductDaoImpl = new OracleProductDaoImpl();
+        productDao = new OracleProductDaoImpl();
     }
 
     @Test
     public void shouldReturnInsertOracleProductResultString() {
         //When
-        String resultString = oracleProductDaoImpl.insertProduct("iPhone");
+        String resultString = productDao.insertProduct("iPhone");
 
         //Then
         assertThat(resultString, is("Oracle Insert Product iPhone"));
@@ -27,7 +27,7 @@ public class OracleProductDaoImplImplTest {
     @Test
     public void shouldReturnDeleteOracleProductResultString() {
         //When
-        String resultString = oracleProductDaoImpl.deleteProduct("iPhone");
+        String resultString = productDao.deleteProduct("iPhone");
 
         //Then
         assertThat(resultString, is("Oracle Delete Product iPhone"));
@@ -36,7 +36,7 @@ public class OracleProductDaoImplImplTest {
     @Test
     public void shouldReturnUpdateOracleProductResultString() {
         //When
-        String resultString = oracleProductDaoImpl.updateProduct("iPhone");
+        String resultString = productDao.updateProduct("iPhone");
 
         //Then
         assertThat(resultString, is("Oracle Update Product iPhone"));
@@ -45,7 +45,7 @@ public class OracleProductDaoImplImplTest {
     @Test
     public void shouldReturnQueryOracleProductResultString() {
         //When
-        String resultString = oracleProductDaoImpl.queryProduct("iPhone");
+        String resultString = productDao.queryProduct("iPhone");
 
         //Then
         assertThat(resultString, is("Oracle Query Product iPhone"));

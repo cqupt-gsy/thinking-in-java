@@ -2,20 +2,24 @@ package example.practise.design.abstractfactory;
 
 import static example.practise.design.constant.ConstantStrings.*;
 
-public class OracleProductDaoImpl {
+public class OracleProductDaoImpl implements ProductDao {
 
+    @Override
     public String insertProduct(String product) {
         return ORACLE + INSERT + PRODUCT + product;
     }
 
-    public String deleteProduct(String prodoct) {
-        return ORACLE + DELETE + PRODUCT + prodoct;
+    @Override
+    public String deleteProduct(String product) {
+        return ORACLE + DELETE + PRODUCT + product;
     }
 
+    @Override
     public String updateProduct(String product) {
         return ORACLE + UPDATE + PRODUCT +product;
     }
 
+    @Override
     public String queryProduct(String product) {
         return ORACLE + QUERY + PRODUCT + product;
     }
