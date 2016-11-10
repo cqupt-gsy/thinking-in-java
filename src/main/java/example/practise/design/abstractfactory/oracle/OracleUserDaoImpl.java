@@ -6,6 +6,8 @@ import example.practise.design.abstractfactory.UserDao;
 import static example.practise.design.constant.ConstantStrings.*;
 
 public class OracleUserDaoImpl implements UserDao {
+
+    @Override
     public String insertUser(String name) {
         return ORACLE + INSERT + USER + name;
     }
