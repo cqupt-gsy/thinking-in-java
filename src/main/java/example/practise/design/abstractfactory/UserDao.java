@@ -7,5 +7,5 @@ public interface UserDao {
 
     String updateUser(String name);
 
-    String quertUser(String name);
+    String queryUser(String name);
 }

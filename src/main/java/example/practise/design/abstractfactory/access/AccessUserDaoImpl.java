@@ -1,27 +1,27 @@
-package example.practise.design.abstractfactory.oracle;
-
+package example.practise.design.abstractfactory.access;
 
 import example.practise.design.abstractfactory.UserDao;
 
 import static example.practise.design.constant.ConstantStrings.*;
 
-public class OracleUserDaoImpl implements UserDao {
+public class AccessUserDaoImpl implements UserDao {
+    @Override
     public String insertUser(String name) {
-        return ORACLE + INSERT + USER + name;
+        return ACCESS + INSERT + USER + name;
     }
 
     @Override
     public String deleteUser(String name) {
-        return ORACLE + DELETE + USER  + name;
+        return ACCESS + DELETE + USER + name;
     }
 
     @Override
     public String updateUser(String name) {
-        return ORACLE + UPDATE + USER  + name;
+        return ACCESS + UPDATE + USER + name;
     }
 
     @Override
     public String queryUser(String name) {
-        return ORACLE + QUERY + USER + name;
+        return ACCESS + QUERY + USER + name;
     }
 }

@@ -1,6 +1,5 @@
 package example.practise.design.abstractfactory.oracle;
 
-import example.practise.design.abstractfactory.oracle.OracleUserDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,11 +45,9 @@ public class OracleUserDaoImplTest {
     @Test
     public void shouldReturnQueryOracleUserResultString() {
         //When
-        String queryString = oracleUserDao.quertUser("GSY");
+        String queryString = oracleUserDao.queryUser("GSY");
 
         //Then
         assertThat(queryString, is("Oracle Query User GSY"));
-
-
     }
 }
