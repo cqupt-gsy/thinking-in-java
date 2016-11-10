@@ -1,5 +1,7 @@
-package example.practise.design.abstractfactory;
+package example.practise.design.abstractfactory.oracle;
 
+import example.practise.design.abstractfactory.ProductDao;
+import example.practise.design.abstractfactory.oracle.OracleProductDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 
