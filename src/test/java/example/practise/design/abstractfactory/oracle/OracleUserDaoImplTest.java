@@ -1,53 +1,22 @@
 package example.practise.design.abstractfactory.oracle;
 
+import example.practise.design.abstractfactory.UserDaoImplTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import static example.practise.design.constant.ConstantStrings.ORACLE;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class OracleUserDaoImplTest {
-
-    private OracleUserDaoImpl oracleUserDao;
+public class OracleUserDaoImplTest extends UserDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
-        oracleUserDao = new OracleUserDaoImpl();
+        userDao = new OracleUserDaoImpl();
     }
 
-    @Test
-    public void shouldReturnInsertOracleUserResultString() {
-        //When
-        String insertResult = oracleUserDao.insertUser("GSY");
-
-        //Then
-        assertThat(insertResult, is("Oracle Insert User GSY"));
-    }
-
-    @Test
-    public void shouldReturnDeleteOracleUserResultString() {
-        //When
-        String deleteResult = oracleUserDao.deleteUser("GSY");
-
-        //Then
-        assertThat(deleteResult, is("Oracle Delete User GSY"));
-    }
-
-    @Test
-    public void shouldReturnUpdateOracleUserResultString() {
-        //When
-        String updateString = oracleUserDao.updateUser("GSY");
-
-        //Then
-        assertThat(updateString, is("Oracle Update User GSY"));
-    }
-
-    @Test
-    public void shouldReturnQueryOracleUserResultString() {
-        //When
-        String queryString = oracleUserDao.queryUser("GSY");
-
-        //Then
-        assertThat(queryString, is("Oracle Query User GSY"));
+    @Override
+    public String getDatabaseName() {
+        return ORACLE;
     }
 }
