@@ -1,6 +1,8 @@
 package example.practise.design.abstractfactory.oracle;
 
+import example.practise.design.abstractfactory.DatabaseFactory;
 import example.practise.design.abstractfactory.UserDaoImplTest;
+import example.practise.design.abstractfactory.factory.OracleDatabase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ public class OracleUserDaoImplTest extends UserDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
-        userDao = new OracleUserDaoImpl();
+        userDao = new OracleDatabase().createUserDaoOperator();
     }
 
     @Override
