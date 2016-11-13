@@ -1,6 +1,5 @@
 package example.practise.design.abstractfactory;
 
-import example.practise.design.abstractfactory.ProductDao;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
