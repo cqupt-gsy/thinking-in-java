@@ -11,7 +11,8 @@ public class OracleProductDaoImplTest extends ProductDaoImplTest {
     @Before
     public void setUp() throws Exception {
 //        productDao = new OracleDatabase().createProductDaoOperator();
-        productDao = DatabaseAccess.createProductDao("oracle");
+//        productDao = DatabaseAccess.createDatabaseFactory("oracle").createProductDaoOperator();
+        productDao = DatabaseAccess.createOracleDatabase().createProductDaoOperator();
     }
 
     @Override

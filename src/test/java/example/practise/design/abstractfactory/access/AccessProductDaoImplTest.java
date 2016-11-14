@@ -11,8 +11,10 @@ public class AccessProductDaoImplTest extends ProductDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
-//        productDao = new AccessDatabase().createProductDaoOperator();
-        productDao = new DatabaseAccess().createProductDao("access");
+//        productDao = new AccessProductDaoImpl();
+//        productDao = DatabaseAccess.createDatabaseFactory("access").createProductDaoOperator();
+        productDao = DatabaseAccess.createAccessDatabase().createProductDaoOperator();
+
     }
 
     @Override

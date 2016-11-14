@@ -2,32 +2,46 @@ package example.practise.design.abstractfactory;
 
 import example.practise.design.abstractfactory.access.AccessProductDaoImpl;
 import example.practise.design.abstractfactory.access.AccessUserDaoImpl;
+import example.practise.design.abstractfactory.access.config.AccessConfig;
+import example.practise.design.abstractfactory.annotation.DatabaseConfig;
+import example.practise.design.abstractfactory.factory.AccessDatabase;
+import example.practise.design.abstractfactory.factory.OracleDatabase;
 import example.practise.design.abstractfactory.oracle.OracleProductDaoImpl;
 import example.practise.design.abstractfactory.oracle.OracleUserDaoImpl;
+import example.practise.design.abstractfactory.oracle.config.OracleConfig;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseAccess {
-    private static Map<String, UserDao> USER_DAO_OPERATOR = new HashMap<String, UserDao>() {
+    private static Map<String, DatabaseFactory> DATABASE_FACTORY_MAP = new HashMap<String, DatabaseFactory>() {
         {
-            put("oracle", new OracleUserDaoImpl());
-            put("access", new AccessUserDaoImpl());
+            put("oracle", new OracleDatabase());
+            put("access", new AccessDatabase());
         }
     };
 
-    private static Map<String, ProductDao> PRODUCT_DAO_OPERATOR = new HashMap<String, ProductDao>() {
-        {
-            put("oracle", new OracleProductDaoImpl());
-            put("access", new AccessProductDaoImpl());
-        }
-    };
 
-    public static UserDao createUserDao(String databaseName) {
-        return USER_DAO_OPERATOR.get(databaseName);
+    public static DatabaseFactory createDatabaseFactory(String databaseName) {
+        return DATABASE_FACTORY_MAP.get(databaseName);
     }
 
-    public static ProductDao createProductDao(String databaseName) {
-        return PRODUCT_DAO_OPERATOR.get(databaseName);
+
+    public static DatabaseFactory createAccessDatabase() throws Exception {
+        Class<?> clazz = AccessConfig.class; //should be package scan
+        return getDatabaseFactory(clazz);
     }
+
+    public static DatabaseFactory createOracleDatabase() throws Exception {
+        Class<?> clazz = OracleConfig.class; //should be package scan
+        return getDatabaseFactory(clazz);
+    }
+
+    private static DatabaseFactory getDatabaseFactory(Class<?> clazz) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        DatabaseConfig databaseConfig = clazz.getAnnotation(DatabaseConfig.class);
+        String fullClassName = databaseConfig.basePackage() + "." + databaseConfig.databaseType();
+        Class<?> returnClass = Class.forName(fullClassName);
+        return (DatabaseFactory) returnClass.newInstance();
+    }
+
 }
