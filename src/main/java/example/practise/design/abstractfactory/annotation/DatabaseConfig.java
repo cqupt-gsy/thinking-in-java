@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DatabaseConfig {
-    public String databaseType();
+    String databaseType();
 
-    public String basePackage() default "example.practise.design.abstractfactory.factory";
+    String basePackage() default "example.practise.design.abstractfactory.factory";
 }

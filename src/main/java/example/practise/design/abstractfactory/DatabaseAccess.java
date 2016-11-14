@@ -1,13 +1,9 @@
 package example.practise.design.abstractfactory;
 
-import example.practise.design.abstractfactory.access.AccessProductDaoImpl;
-import example.practise.design.abstractfactory.access.AccessUserDaoImpl;
 import example.practise.design.abstractfactory.access.config.AccessConfig;
 import example.practise.design.abstractfactory.annotation.DatabaseConfig;
 import example.practise.design.abstractfactory.factory.AccessDatabase;
 import example.practise.design.abstractfactory.factory.OracleDatabase;
-import example.practise.design.abstractfactory.oracle.OracleProductDaoImpl;
-import example.practise.design.abstractfactory.oracle.OracleUserDaoImpl;
 import example.practise.design.abstractfactory.oracle.config.OracleConfig;
 
 import java.util.HashMap;
