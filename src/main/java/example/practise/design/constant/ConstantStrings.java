@@ -3,7 +3,6 @@ package example.practise.design.constant;
 public class ConstantStrings {
     public static final String ORACLE = "Oracle ";
     public static final String ACCESS = "Access ";
-    public static final String MYSQL = "Mysql ";
     public static final String SQLSERVER = "Sql Server ";
 
     public static final String INSERT = "Insert ";
