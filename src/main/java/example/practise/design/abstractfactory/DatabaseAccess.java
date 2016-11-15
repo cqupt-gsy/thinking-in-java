@@ -5,6 +5,7 @@ import example.practise.design.abstractfactory.annotation.DatabaseConfig;
 import example.practise.design.abstractfactory.factory.AccessDatabase;
 import example.practise.design.abstractfactory.factory.OracleDatabase;
 import example.practise.design.abstractfactory.oracle.config.OracleConfig;
+import example.practise.design.abstractfactory.sqlserver.config.SqlserverConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,4 +41,8 @@ public class DatabaseAccess {
         return (DatabaseFactory) returnClass.newInstance();
     }
 
+    public static DatabaseFactory createSqlserverDatabase() throws Exception {
+        Class<?> clazz = SqlserverConfig.class;
+        return getDatabaseFactory(clazz);
+    }
 }
