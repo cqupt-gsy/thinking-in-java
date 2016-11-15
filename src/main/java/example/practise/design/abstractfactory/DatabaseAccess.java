@@ -4,6 +4,7 @@ import example.practise.design.abstractfactory.access.config.AccessConfig;
 import example.practise.design.abstractfactory.annotation.DatabaseConfig;
 import example.practise.design.abstractfactory.factory.AccessDatabase;
 import example.practise.design.abstractfactory.factory.OracleDatabase;
+import example.practise.design.abstractfactory.factory.SqlserverDatabase;
 import example.practise.design.abstractfactory.oracle.config.OracleConfig;
 import example.practise.design.abstractfactory.sqlserver.config.SqlserverConfig;
 
@@ -15,6 +16,7 @@ public class DatabaseAccess {
         {
             put("oracle", new OracleDatabase());
             put("access", new AccessDatabase());
+            put("sqlserver", new SqlserverDatabase());
         }
     };
 
