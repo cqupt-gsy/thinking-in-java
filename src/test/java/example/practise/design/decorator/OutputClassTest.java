@@ -23,6 +23,7 @@ public class OutputClassTest {
 
     @Test
     public void shouldReturnBasicDecoratorOutputString() {
+        //Given
         outputClass = new BasicDecoratorOutputClass(new OutputClass());
 
         //Then
@@ -31,6 +32,7 @@ public class OutputClassTest {
 
     @Test
     public void shouldReturnBasicOutputStringWithBasicDecorator() {
+        //Given
         outputClass = new BasicDecoratorOutputClass();
 
         //Then
@@ -47,7 +49,17 @@ public class OutputClassTest {
     }
 
     @Test
+    public void shouldReturnStreamDecoratorOutputStringWithFirstLayerDecorator() {
+        //Given
+        outputClass =  new StreamDecoratorOutput(new OutputClass());
+
+        //Then
+        assertThat(outputClass.output(), is("Stream Decorator Output"));
+    }
+
+    @Test
     public void shouldReturnBasicOutputStringWithStreamDecorator() {
+        //Given
         outputClass = new StreamDecoratorOutput();
 
         //Then
@@ -65,6 +77,7 @@ public class OutputClassTest {
 
     @Test
     public void shouldReturnBasicOutputStringWithScannerDecorator() {
+        //Given
         outputClass = new ScannerDecoratorOutput();
 
         //Then
