@@ -1,4 +1,6 @@
-package example.practise.design.validatestrategy;
+package example.practise.design.validatestrategy.strategies;
+
+import example.practise.design.validatestrategy.validateobjects.ValidateObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class ValidateContext {
         validateStrategies.add(strategy);
     }
 
-    List<String> validate(ValidateObject validateObject) {
+    public List<String> validate(ValidateObject validateObject) {
         validateStrategies.forEach(validateStrategy -> validateStrategy.validation(errorList, validateObject));
         return errorList;
     }

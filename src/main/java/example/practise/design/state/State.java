@@ -1,5 +1,6 @@
 package example.practise.design.state;
 
-public class State {
+public interface State {
 
+    String changeState(StateContext stateContext);
 }

@@ -1,5 +1,9 @@
 package example.practise.design.validatestrategy;
 
+import example.practise.design.validatestrategy.facade.RealObjectAgainValidateFacade;
+import example.practise.design.validatestrategy.facade.RealObjectValidateFacade;
+import example.practise.design.validatestrategy.validateobjects.RealNeedValidateObject;
+import example.practise.design.validatestrategy.validateobjects.RealNeedValidateObjectAgain;
 import org.junit.Test;
 
 import java.util.List;

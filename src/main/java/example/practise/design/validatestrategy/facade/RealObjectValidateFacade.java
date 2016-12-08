@@ -1,4 +1,9 @@
-package example.practise.design.validatestrategy;
+package example.practise.design.validatestrategy.facade;
+
+import example.practise.design.validatestrategy.strategies.ValidateContext;
+import example.practise.design.validatestrategy.validateobjects.ValidateObject;
+import example.practise.design.validatestrategy.strategies.ApplicationValidateStrategy;
+import example.practise.design.validatestrategy.strategies.DobValidateStrategy;
 
 import java.util.List;
 

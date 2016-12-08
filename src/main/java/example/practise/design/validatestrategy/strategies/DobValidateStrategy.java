@@ -1,4 +1,6 @@
-package example.practise.design.validatestrategy;
+package example.practise.design.validatestrategy.strategies;
+
+import example.practise.design.validatestrategy.validateobjects.ValidateObject;
 
 import java.util.List;
 

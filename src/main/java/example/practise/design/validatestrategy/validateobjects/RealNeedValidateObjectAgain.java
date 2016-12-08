@@ -1,4 +1,4 @@
-package example.practise.design.validatestrategy;
+package example.practise.design.validatestrategy.validateobjects;
 
 public class RealNeedValidateObjectAgain extends ValidateObject {
     private String others;
