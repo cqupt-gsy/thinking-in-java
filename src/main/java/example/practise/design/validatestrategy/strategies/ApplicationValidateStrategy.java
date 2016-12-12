@@ -1,15 +1,13 @@
 package example.practise.design.validatestrategy.strategies;
 
-import example.practise.design.validatestrategy.validateobjects.ValidateObject;
-
 import java.util.List;
 
 public class ApplicationValidateStrategy implements ValidateStrategy {
 
 
     @Override
-    public void validation(List<String> errorList, ValidateObject validateObject) {
+    public void validation(List<String> errorList, Object validateObject) {
         errorList.add("application error");
-        validateObject.getApplicationType();
+//        validateObject.getApplicationType();
     }
 }

@@ -1,6 +1,6 @@
 package example.practise.design.validatestrategy.validateobjects;
 
-public class RealNeedValidateObject extends ValidateObject {
+public class RealNeedValidateObject {
 
     private String applicationType;
 
