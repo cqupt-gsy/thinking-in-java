@@ -2,6 +2,7 @@ package example.practise.design.state;
 
 public class StateContext {
     private State state;
+    private int stateValue;
 
     public StateContext(State state) {
 
@@ -14,5 +15,13 @@ public class StateContext {
 
     public String changeState() {
         return state.changeState(this);
+    }
+
+    public void setStateValue(int stateValue) {
+        this.stateValue = stateValue;
+    }
+
+    public int getStateValue() {
+        return stateValue;
     }
 }

@@ -10,8 +10,9 @@ public class StateTest {
     @Test
     public void shouldChangeStateByStateContext() {
         //Given
-        State state = new NormalState(9);
+        State state = new NormalState();
         StateContext stateContext = new StateContext(state);
+        stateContext.setStateValue(9);
 
         //When
         String result = stateContext.changeState();
@@ -24,8 +25,9 @@ public class StateTest {
     @Test
     public void shouldNormalStateToLunchStateByStateContext() {
         //Given
-        State state = new NormalState(12);
+        State state = new NormalState();
         StateContext stateContext = new StateContext(state);
+        stateContext.setStateValue(12);
 
         //When
         String result = stateContext.changeState();
@@ -38,8 +40,9 @@ public class StateTest {
     @Test
     public void shouldNormalStateToAfternoonStateByStateContext() {
         //Given
-        State state = new NormalState(18);
+        State state = new NormalState();
         StateContext stateContext = new StateContext(state);
+        stateContext.setStateValue(18);
 
         //When
         String result = stateContext.changeState();
