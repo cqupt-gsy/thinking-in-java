@@ -13,6 +13,8 @@ public class MementoTest {
         Originator originator = new Originator(5);
         CareTaker careTaker = new CareTaker(originator.createMemento());
         originator.changeNewValue(10);
+        assertThat(originator.getOriginalValue(), is(10));
+
 
         //When
         originator.rollback(careTaker.getMemento());
