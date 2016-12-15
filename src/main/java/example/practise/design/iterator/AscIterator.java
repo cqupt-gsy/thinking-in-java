@@ -5,12 +5,12 @@ import java.lang.reflect.Field;
 public class AscIterator implements Iterator {
 
     private int currentIndex;
-    private AggregateObject aggregateObject;
+    private Object aggregateObject;
     private Field[] fields;
 
-    public AscIterator(AggregateObject aggregateObject) {
-        this.aggregateObject = aggregateObject;
-        fields = aggregateObject.getClass().getDeclaredFields();
+    public AscIterator(Object object) {
+        this.aggregateObject = object;
+        fields = object.getClass().getDeclaredFields();
         currentIndex = -1;
     }
 

@@ -5,11 +5,11 @@ import java.lang.reflect.Field;
 public class DescIterator implements Iterator {
     private final Field[] fields;
     private int currentIndex;
-    private AggregateObject aggregateObject;
+    private Object aggregateObject;
 
-    public DescIterator(AggregateObject aggregateObject) {
-        this.aggregateObject = aggregateObject;
-        fields = aggregateObject.getClass().getDeclaredFields();
+    public DescIterator(Object object) {
+        this.aggregateObject = object;
+        fields = object.getClass().getDeclaredFields();
         currentIndex = fields.length ;
     }
 
