@@ -8,11 +8,12 @@ import static org.junit.Assert.assertThat;
 public class IteratorTest {
 
     @Test
-    public void shouldReturnAscListValueWhenIteratorAggregateObject() {
+    public void shouldReturnAscListValueWhenIteratorAggregateObject() throws IllegalAccessException {
         //Given
         AggregateObject aggregateObject = new AggregateObject();
-        aggregateObject.append("hello");
-        aggregateObject.append("world!");
+        aggregateObject.setFirstField("hello");
+        aggregateObject.setSecondField("world");
+        aggregateObject.setThirdField("!");
         Iterator iterator = aggregateObject.createAscIterator();
 
         //When
@@ -26,11 +27,12 @@ public class IteratorTest {
     }
 
     @Test
-    public void shouldReturnDescListValueWhenIteratorAggregateObject() {
+    public void shouldReturnDescListValueWhenIteratorAggregateObject() throws IllegalAccessException {
         //Given
         AggregateObject aggregateObject = new AggregateObject();
-        aggregateObject.append("hello");
-        aggregateObject.append("world!");
+        aggregateObject.setFirstField("hello");
+        aggregateObject.setSecondField("world");
+        aggregateObject.setThirdField("!");
         Iterator iterator = aggregateObject.createDescIterator();
 
         //When
@@ -40,6 +42,6 @@ public class IteratorTest {
         }
 
         //Then
-        assertThat(builder.toString(), is("world!hello"));
+        assertThat(builder.toString(), is("!worldhello"));
     }
 }

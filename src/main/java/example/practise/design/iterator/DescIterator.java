@@ -1,21 +1,27 @@
 package example.practise.design.iterator;
 
+import java.lang.reflect.Field;
+
 public class DescIterator implements Iterator {
-    private int index;
+    private final Field[] fields;
+    private int currentIndex;
     private AggregateObject aggregateObject;
 
     public DescIterator(AggregateObject aggregateObject) {
         this.aggregateObject = aggregateObject;
-        index = this.aggregateObject.getValues().size();
+        fields = aggregateObject.getClass().getDeclaredFields();
+        currentIndex = fields.length ;
     }
 
     @Override
     public boolean hasNext() {
-        return index > 0;
+        --currentIndex;
+        return currentIndex >= 0;
     }
 
     @Override
-    public String next() {
-        return this.aggregateObject.getValues().get(--index);
+    public String next() throws IllegalAccessException {
+        fields[currentIndex].setAccessible(true);
+        return fields[currentIndex].get(aggregateObject).toString();
     }
 }
