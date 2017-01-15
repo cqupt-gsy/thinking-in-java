@@ -13,9 +13,9 @@ class BinarySearch {
             int endIndices = dataList.size();
             while (beginIndices != endIndices) {
                 int midIndices = (beginIndices + endIndices) / 2;
-                if (createCompareRule(dataList.get(midIndices)).test(element)) {
+                if (isTestDataSmallerThan(dataList.get(midIndices)).test(element)) {
                     endIndices = midIndices;
-                } else if (createCompareRule(element).test(dataList.get(midIndices))) {
+                } else if (isTestDataSmallerThan(element).test(dataList.get(midIndices))) {
                     beginIndices = midIndices;
                     ++beginIndices;
                 } else {
@@ -26,11 +26,28 @@ class BinarySearch {
         return DEFAULT_RESULT;
     }
 
-    public Integer recursiveChop(Integer element, List<Integer> dataList) {
-        return null;
+    Integer recursiveChop(Integer element, List<Integer> dataList) {
+        if (dataList == null || dataList.isEmpty()) {
+            return DEFAULT_RESULT;
+        }
+        return recursiveHelper(element, dataList, 0, dataList.size());
     }
 
-    private Predicate<Integer> createCompareRule(Integer origin) {
-        return targets -> targets < origin;
+    private Integer recursiveHelper(Integer element, List<Integer> dataList, Integer beginIndices, Integer endIndices) {
+        if (beginIndices > endIndices || beginIndices >= dataList.size() || endIndices < 0) {
+            return DEFAULT_RESULT;
+        }
+        int midIndices = (beginIndices + endIndices) / 2;
+        if (isTestDataSmallerThan(dataList.get(midIndices)).test(element)) {
+            return recursiveHelper(element, dataList, beginIndices, --midIndices);
+        } else if (isTestDataSmallerThan(element).test(dataList.get(midIndices))) {
+            return recursiveHelper(element, dataList, ++midIndices, endIndices);
+        } else {
+            return midIndices;
+        }
+    }
+
+    private Predicate<Integer> isTestDataSmallerThan(Integer rawData) {
+        return targets -> targets < rawData;
     }
 }
