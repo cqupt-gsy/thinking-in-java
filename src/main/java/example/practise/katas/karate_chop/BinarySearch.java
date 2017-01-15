@@ -1,29 +1,32 @@
 package example.practise.katas.karate_chop;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 class BinarySearch {
 
     private static final int DEFAULT_RESULT = -1;
 
-    Integer loopChop(Integer element, List<Integer> dataList) {
-        if (dataList != null) {
-            int beginIndices = 0;
-            int endIndices = dataList.size();
-            while (beginIndices != endIndices) {
-                int midIndices = (beginIndices + endIndices) / 2;
-                if (isTestDataSmallerThan(dataList.get(midIndices)).test(element)) {
-                    endIndices = midIndices;
-                } else if (isTestDataSmallerThan(element).test(dataList.get(midIndices))) {
-                    beginIndices = midIndices;
-                    ++beginIndices;
-                } else {
-                    return midIndices;
+    Function<Integer, Integer> loopChop(List<Integer> dataList) {
+        return element -> {
+            if (dataList != null) {
+                int beginIndices = 0;
+                int endIndices = dataList.size();
+                while (beginIndices != endIndices) {
+                    int midIndices = (beginIndices + endIndices) / 2;
+                    if (isTestDataSmallerThan(dataList.get(midIndices)).test(element)) {
+                        endIndices = midIndices;
+                    } else if (isTestDataSmallerThan(element).test(dataList.get(midIndices))) {
+                        beginIndices = midIndices;
+                        ++beginIndices;
+                    } else {
+                        return midIndices;
+                    }
                 }
             }
-        }
-        return DEFAULT_RESULT;
+            return DEFAULT_RESULT;
+        };
     }
 
     Integer recursiveChop(Integer element, List<Integer> dataList) {

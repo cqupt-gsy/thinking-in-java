@@ -33,7 +33,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.function.Function;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -53,9 +52,9 @@ public class BinarySearchTest {
         List<Integer> oneElementList = createOneElementList();
 
         //Then
-        assertThat(binarySearch.loopChop(3, createEmptyList())).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(3, oneElementList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(1, oneElementList)).isEqualTo(0);
+        assertThat(binarySearch.loopChop(createEmptyList()).apply(3)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oneElementList).apply(3)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oneElementList).apply(1)).isEqualTo(0);
     }
 
     @Test
@@ -64,9 +63,9 @@ public class BinarySearchTest {
         List<Integer> oddElementsList = createOddElementsList();
 
         //Then
-        assertThat(binarySearch.loopChop(1, oddElementsList)).isEqualTo(0);
-        assertThat(binarySearch.loopChop(3, oddElementsList)).isEqualTo(1);
-        assertThat(binarySearch.loopChop(5, oddElementsList)).isEqualTo(2);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(1)).isEqualTo(0);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(3)).isEqualTo(1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(5)).isEqualTo(2);
     }
 
     @Test
@@ -75,10 +74,10 @@ public class BinarySearchTest {
         List<Integer> oddElementsList = createOddElementsList();
 
         //Then
-        assertThat(binarySearch.loopChop(0, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(2, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(4, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(6, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(0)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(2)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(4)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(6)).isEqualTo(-1);
     }
 
     @Test
@@ -87,10 +86,10 @@ public class BinarySearchTest {
         List<Integer> evenElementsList = createEvenElementsList();
 
         //Then
-        assertThat(binarySearch.loopChop(1, evenElementsList)).isEqualTo(0);
-        assertThat(binarySearch.loopChop(3, evenElementsList)).isEqualTo(1);
-        assertThat(binarySearch.loopChop(5, evenElementsList)).isEqualTo(2);
-        assertThat(binarySearch.loopChop(7, evenElementsList)).isEqualTo(3);
+        assertThat(binarySearch.loopChop(evenElementsList).apply(1)).isEqualTo(0);
+        assertThat(binarySearch.loopChop(evenElementsList).apply(3)).isEqualTo(1);
+        assertThat(binarySearch.loopChop(evenElementsList).apply(5)).isEqualTo(2);
+        assertThat(binarySearch.loopChop(evenElementsList).apply(7)).isEqualTo(3);
     }
 
     @Test
@@ -99,20 +98,17 @@ public class BinarySearchTest {
         List<Integer> oddElementsList = createOddElementsList();
 
         //Then
-        assertThat(binarySearch.loopChop(0, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(2, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(4, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(6, oddElementsList)).isEqualTo(-1);
-        assertThat(binarySearch.loopChop(8, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(0)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(2)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(4)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(6)).isEqualTo(-1);
+        assertThat(binarySearch.loopChop(oddElementsList).apply(8)).isEqualTo(-1);
     }
 
     @Test
     public void shouldReturnMinusOneWhenArrayIsNullOrNotFindTheDataInArrayWithRecursiveChop() {
         //Given
         List<Integer> oneElementList = createOneElementList();
-
-        Function<BinarySearch, Integer> biFunction = binarySearch -> binarySearch.loopChop(1, createEmptyList());
-        biFunction.apply(binarySearch);
 
         //Then
         assertThat(binarySearch.recursiveChop(3, createEmptyList())).isEqualTo(-1);
