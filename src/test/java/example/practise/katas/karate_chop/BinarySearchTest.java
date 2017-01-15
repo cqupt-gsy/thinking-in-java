@@ -17,11 +17,14 @@ And for all these questions, ask yourself “why?”.
 --java8 lambda 表达式，理解java8的函数式编程以及减少编码
 --guava
 --assertj
+--collections.binarySearch
 
 
 3.How did you go about coming up with approaches four and five?
 What techniques did you use to fire those “off the wall” neurons?
 --loop
+--recursive
+--api
 
 
 
@@ -162,6 +165,65 @@ public class BinarySearchTest {
         assertThat(binarySearch.recursiveChop(4, oddElementsList)).isEqualTo(-1);
         assertThat(binarySearch.recursiveChop(6, oddElementsList)).isEqualTo(-1);
         assertThat(binarySearch.recursiveChop(8, oddElementsList)).isEqualTo(-1);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenArrayIsNullOrNotFindTheDataInArrayWithApiChop() {
+        //Given
+        List<Integer> oneElementList = createOneElementList();
+
+        //Then
+        assertThat(binarySearch.apiChop(3, createEmptyList())).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(3, oneElementList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(1, oneElementList)).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnIndicesOfElementInOddListWithApiChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.apiChop(1, oddElementsList)).isEqualTo(0);
+        assertThat(binarySearch.apiChop(3, oddElementsList)).isEqualTo(1);
+        assertThat(binarySearch.apiChop(5, oddElementsList)).isEqualTo(2);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenElementCantFindInOddListWithApiChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.apiChop(0, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(2, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(4, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(6, oddElementsList)).isEqualTo(-1);
+    }
+
+    @Test
+    public void shouldReturnIndicesOfElementInEvenListWithApiChop() {
+        //Given
+        List<Integer> evenElementsList = createEvenElementsList();
+
+        //Then
+        assertThat(binarySearch.apiChop(1, evenElementsList)).isEqualTo(0);
+        assertThat(binarySearch.apiChop(3, evenElementsList)).isEqualTo(1);
+        assertThat(binarySearch.apiChop(5, evenElementsList)).isEqualTo(2);
+        assertThat(binarySearch.apiChop(7, evenElementsList)).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenElementCantFindInEvenListWithApiChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.apiChop(0, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(2, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(4, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(6, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.apiChop(8, oddElementsList)).isEqualTo(-1);
     }
 
     private List<Integer> createEmptyList() {

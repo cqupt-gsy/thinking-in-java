@@ -1,5 +1,6 @@
 package example.practise.katas.karate_chop;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -52,5 +53,10 @@ class BinarySearch {
 
     private Predicate<Integer> isTestDataSmallerThan(Integer rawData) {
         return targets -> targets < rawData;
+    }
+
+    Integer apiChop(Integer element, List<Integer> dataList) {
+        int result = Collections.binarySearch(dataList, element);
+        return result < 0 ? DEFAULT_RESULT : result;
     }
 }
