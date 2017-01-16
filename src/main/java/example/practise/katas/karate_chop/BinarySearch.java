@@ -16,9 +16,10 @@ class BinarySearch {
                 int endIndices = dataList.size();
                 while (beginIndices != endIndices) {
                     int midIndices = (beginIndices + endIndices) / 2;
-                    if (isTestDataSmallerThan(dataList.get(midIndices)).test(element)) {
+                    Integer rawData = dataList.get(midIndices);
+                    if (isTestDataSmallerThan(rawData).test(element)) {
                         endIndices = midIndices;
-                    } else if (isTestDataSmallerThan(element).test(dataList.get(midIndices))) {
+                    } else if (isTestDataSmallerThan(element).test(rawData)) {
                         beginIndices = midIndices;
                         ++beginIndices;
                     } else {
@@ -58,5 +59,36 @@ class BinarySearch {
     Integer apiChop(Integer element, List<Integer> dataList) {
         int result = Collections.binarySearch(dataList, element);
         return result < 0 ? DEFAULT_RESULT : result;
+    }
+
+    Integer funChop(Integer element, List<Integer> dataList) {
+        if (dataList.isEmpty()) {
+            return DEFAULT_RESULT;
+        }
+        int midIndices = dataList.size() / 2;
+        Integer midValue = dataList.get(midIndices);
+        if (midValue.equals(element)) {
+            return midIndices;
+        } else if (isTestDataSmallerThan(midValue).test(element)) {
+            midIndices = (--midIndices) / 2;
+            midIndices = midIndices < 0 ? 0 : midIndices;
+            midValue = dataList.get(midIndices);
+            if (midValue.equals(element)) {
+                return midIndices;
+            } else if (isTestDataSmallerThan(midValue).test(element)) {
+                midIndices = (--midIndices) / 2;
+                midIndices = midIndices < 0 ? 0 : midIndices;
+                midValue = dataList.get(midIndices);
+                return midValue.equals(element) ? midIndices : DEFAULT_RESULT;
+            } else {
+                ++midIndices;
+                midValue = dataList.get(midIndices);
+                return midValue.equals(element) ? midIndices : DEFAULT_RESULT;
+            }
+        } else {
+            midIndices = (++midIndices + dataList.size()) / 2;
+            midIndices = midIndices > dataList.size() - 1 ? dataList.size() - 1 : midIndices;
+            return dataList.get(midIndices).equals(element) ? midIndices : DEFAULT_RESULT;
+        }
     }
 }

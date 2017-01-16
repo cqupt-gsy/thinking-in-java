@@ -25,6 +25,7 @@ What techniques did you use to fire those “off the wall” neurons?
 --loop
 --recursive
 --api
+--fun
 
 
 
@@ -224,6 +225,65 @@ public class BinarySearchTest {
         assertThat(binarySearch.apiChop(4, oddElementsList)).isEqualTo(-1);
         assertThat(binarySearch.apiChop(6, oddElementsList)).isEqualTo(-1);
         assertThat(binarySearch.apiChop(8, oddElementsList)).isEqualTo(-1);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenArrayIsNullOrNotFindTheDataInArrayWithFunChop() {
+        //Given
+        List<Integer> oneElementList = createOneElementList();
+
+        //Then
+        assertThat(binarySearch.funChop(3, createEmptyList())).isEqualTo(-1);
+        assertThat(binarySearch.funChop(3, oneElementList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(1, oneElementList)).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnIndicesOfElementInOddListWithFunChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.funChop(1, oddElementsList)).isEqualTo(0);
+        assertThat(binarySearch.funChop(3, oddElementsList)).isEqualTo(1);
+        assertThat(binarySearch.funChop(5, oddElementsList)).isEqualTo(2);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenElementCantFindInOddListWithFunChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.funChop(0, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(2, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(4, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(6, oddElementsList)).isEqualTo(-1);
+    }
+
+    @Test
+    public void shouldReturnIndicesOfElementInEvenListWithFunChop() {
+        //Given
+        List<Integer> evenElementsList = createEvenElementsList();
+
+        //Then
+        assertThat(binarySearch.funChop(1, evenElementsList)).isEqualTo(0);
+        assertThat(binarySearch.funChop(3, evenElementsList)).isEqualTo(1);
+        assertThat(binarySearch.funChop(5, evenElementsList)).isEqualTo(2);
+        assertThat(binarySearch.funChop(7, evenElementsList)).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldReturnMinusOneWhenElementCantFindInEvenListWithFunChop() {
+        //Given
+        List<Integer> oddElementsList = createOddElementsList();
+
+        //Then
+        assertThat(binarySearch.funChop(0, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(2, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(4, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(6, oddElementsList)).isEqualTo(-1);
+        assertThat(binarySearch.funChop(8, oddElementsList)).isEqualTo(-1);
     }
 
     private List<Integer> createEmptyList() {
