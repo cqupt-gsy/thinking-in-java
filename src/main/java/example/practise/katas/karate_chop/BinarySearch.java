@@ -66,29 +66,18 @@ class BinarySearch {
             return DEFAULT_RESULT;
         }
         int midIndices = dataList.size() / 2;
-        Integer midValue = dataList.get(midIndices);
-        if (midValue.equals(element)) {
-            return midIndices;
-        } else if (isTestDataSmallerThan(midValue).test(element)) {
-            midIndices = (--midIndices) / 2;
-            midIndices = midIndices < 0 ? 0 : midIndices;
-            midValue = dataList.get(midIndices);
+        for (int i = 0; i < dataList.size(); i++) {
+            Integer midValue = dataList.get(midIndices);
             if (midValue.equals(element)) {
                 return midIndices;
             } else if (isTestDataSmallerThan(midValue).test(element)) {
-                midIndices = (--midIndices) / 2;
+                midIndices = midIndices / 2;
                 midIndices = midIndices < 0 ? 0 : midIndices;
-                midValue = dataList.get(midIndices);
-                return midValue.equals(element) ? midIndices : DEFAULT_RESULT;
             } else {
-                ++midIndices;
-                midValue = dataList.get(midIndices);
-                return midValue.equals(element) ? midIndices : DEFAULT_RESULT;
+                midIndices = (++midIndices + dataList.size()) / 2;
+                midIndices = midIndices > dataList.size() - 1 ? dataList.size() - 1 : midIndices;
             }
-        } else {
-            midIndices = (++midIndices + dataList.size()) / 2;
-            midIndices = midIndices > dataList.size() - 1 ? dataList.size() - 1 : midIndices;
-            return dataList.get(midIndices).equals(element) ? midIndices : DEFAULT_RESULT;
         }
+        return DEFAULT_RESULT;
     }
 }
