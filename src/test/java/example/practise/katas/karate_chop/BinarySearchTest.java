@@ -7,18 +7,15 @@
 --递归查找时，思路直接错误，不能够将原列表切开，需要寻求其他方法
 --递归函数实现时，没确定好数据没找到时的退出条件，递归函数退出循环的条件比直接循环的条件更加多，需要写的更加明确
 
-
-
 2.What can you say about the relative merits of the various techniques you’ve chosen?
-Which is the most likely to make it in to production code?
-Which was the most fun to write?
-Which was the hardest to get working?
+Which is the most likely to make it in to production code? --using third api
+Which was the most fun to write? --fun chop implement
+Which was the hardest to get working? -- recursive
 And for all these questions, ask yourself “why?”.
 --java8 lambda 表达式，理解java8的函数式编程以及减少编码
 --guava
 --assertj
 --collections.binarySearch
-
 
 3.How did you go about coming up with approaches four and five?
 What techniques did you use to fire those “off the wall” neurons?
@@ -26,8 +23,6 @@ What techniques did you use to fire those “off the wall” neurons?
 --recursive
 --api
 --fun
-
-
 
 */
 package example.practise.katas.karate_chop;

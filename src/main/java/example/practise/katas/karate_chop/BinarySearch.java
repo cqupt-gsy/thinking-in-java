@@ -71,13 +71,27 @@ class BinarySearch {
             if (midValue.equals(element)) {
                 return midIndices;
             } else if (isTestDataSmallerThan(midValue).test(element)) {
-                midIndices = midIndices / 2;
-                midIndices = midIndices < 0 ? 0 : midIndices;
+                midIndices = updateIndicesWhenElementLessThanMidValue(midIndices);
             } else {
-                midIndices = (++midIndices + dataList.size()) / 2;
-                midIndices = midIndices > dataList.size() - 1 ? dataList.size() - 1 : midIndices;
+                midIndices = updateIndicesWhenElementGreaterThanMidValue(dataList.size(), midIndices);
             }
         }
         return DEFAULT_RESULT;
+    }
+
+    private int updateIndicesWhenElementLessThanMidValue(int midIndices) {
+        Function<Integer, Integer> updateIndices = indices -> {
+            indices = indices / 2;
+            return indices < 0 ? 0 : indices;
+        };
+        return updateIndices.apply(midIndices);
+    }
+
+    private int updateIndicesWhenElementGreaterThanMidValue(int listLength, int midIndices) {
+        Function<Integer, Integer> updateIndices = indices -> {
+            indices = (++indices + listLength) / 2;
+            return indices > listLength - 1 ? listLength - 1 : indices;
+        };
+        return updateIndices.apply(midIndices);
     }
 }
