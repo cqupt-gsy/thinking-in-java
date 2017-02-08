@@ -3,6 +3,7 @@ package example.practise.katas.karate_data_munging;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,11 +15,10 @@ public class SmallestTemperatureSpread {
     private final String ENCODING = "utf-8";
     private final String FIRST_SKIP_LINE_HEAD = "Dy";
     private final String LAST_SKIP_LINE_HEAD = "mo";
-    private final String FIRST_COLUMN_DELIMITER = "  ";
-    private final String THIRD_COLUMN_DELIMITER = "   ";
+    private final String DELIMITER = " ";
     private final int FIRST_COLUMN = 0;
     private final int SECOND_COLUMN = 1;
-    private final int THIRD_COLUMN = 1;
+    private final int THIRD_COLUMN = 2;
     private List<DailyTemperature> dailyTemperatureDataList;
 
     public DailyTemperature calculateSmallestTemperatureSpread() throws IOException {
@@ -43,6 +43,21 @@ public class SmallestTemperatureSpread {
                 .collect(Collectors.toList());
     }
 
+    private boolean isSkipLine(String content) {
+        return !(content.contains(FIRST_SKIP_LINE_HEAD) || content.contains(LAST_SKIP_LINE_HEAD));
+    }
+
+    private DailyTemperature buildDailyTemperature(String content) {
+        List<String> items = Arrays.stream(content.trim().split(DELIMITER))
+                .filter(item -> !isBlank(item))
+                .collect(Collectors.toList());
+
+        return new DailyTemperature(
+                Integer.valueOf(items.get(FIRST_COLUMN)),
+                items.get(SECOND_COLUMN),
+                items.get(THIRD_COLUMN));
+    }
+
     private void calculateTemperatureSpread(DailyTemperature dailyTemperature) {
         int maxTemperature = parseTemperature(dailyTemperature.getMaxTemperature());
         int minTemperature = parseTemperature(dailyTemperature.getMinTemperature());
@@ -54,19 +69,6 @@ public class SmallestTemperatureSpread {
             temperature = temperature.substring(0, temperature.indexOf("*"));
         }
         return Integer.valueOf(temperature);
-    }
-
-    private boolean isSkipLine(String content) {
-        return !(content.contains(FIRST_SKIP_LINE_HEAD) || content.contains(LAST_SKIP_LINE_HEAD));
-    }
-    
-    private DailyTemperature buildDailyTemperature(String content) {
-        final String[] firstColumnItems = content.trim().split(FIRST_COLUMN_DELIMITER);
-        final String[] thirdColumnItems = content.trim().split(THIRD_COLUMN_DELIMITER);
-        return new DailyTemperature(
-                Integer.valueOf(firstColumnItems[FIRST_COLUMN]),
-                firstColumnItems[SECOND_COLUMN].trim(),
-                thirdColumnItems[THIRD_COLUMN].trim());
     }
 
     public List<DailyTemperature> getDailyTemperatureDataList() {
