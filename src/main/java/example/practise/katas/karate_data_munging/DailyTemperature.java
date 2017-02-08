@@ -28,7 +28,16 @@ public class DailyTemperature {
         return temperatureSpread;
     }
 
-    public void setTemperatureSpread(int temperatureSpread) {
-        this.temperatureSpread = temperatureSpread;
+    public void setTemperatureSpread() {
+        int maxTemperature = parseTemperature(this.getMaxTemperature());
+        int minTemperature = parseTemperature(this.getMinTemperature());
+        this.temperatureSpread = maxTemperature - minTemperature;
+    }
+
+    private int parseTemperature(String temperature) {
+        if (temperature.contains("*")) {
+            temperature = temperature.substring(0, temperature.indexOf("*"));
+        }
+        return Integer.valueOf(temperature);
     }
 }

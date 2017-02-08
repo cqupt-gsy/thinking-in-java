@@ -1,5 +1,6 @@
 package example.practise.katas.karate_data_munging;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,11 +9,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SmallestTemperatureSpreadTest {
 
+    private SmallestTemperatureSpread smallestTemperatureSpread;
+
+    @Before
+    public void setUp() throws Exception {
+        smallestTemperatureSpread = new SmallestTemperatureSpread();
+    }
+
     @Test
     public void shouldReturnDataListFromWeatherFile() throws IOException {
-        //Given
-        SmallestTemperatureSpread smallestTemperatureSpread = new SmallestTemperatureSpread();
-
         //When
         smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 
@@ -37,9 +42,6 @@ public class SmallestTemperatureSpreadTest {
 
     @Test
     public void shouldReturnDataListWithTemperatureSpread() throws IOException {
-        //Given
-        SmallestTemperatureSpread smallestTemperatureSpread = new SmallestTemperatureSpread();
-
         //When
         smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 
@@ -50,9 +52,6 @@ public class SmallestTemperatureSpreadTest {
 
     @Test
     public void shouldReturnSmallestTemperatureSpread() throws IOException {
-        //Given
-        SmallestTemperatureSpread smallestTemperatureSpread = new SmallestTemperatureSpread();
-
         //When
         DailyTemperature dailyTemperature = smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 

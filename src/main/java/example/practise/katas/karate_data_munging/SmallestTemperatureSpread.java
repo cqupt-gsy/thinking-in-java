@@ -59,16 +59,7 @@ public class SmallestTemperatureSpread {
     }
 
     private void calculateTemperatureSpread(DailyTemperature dailyTemperature) {
-        int maxTemperature = parseTemperature(dailyTemperature.getMaxTemperature());
-        int minTemperature = parseTemperature(dailyTemperature.getMinTemperature());
-        dailyTemperature.setTemperatureSpread(maxTemperature - minTemperature);
-    }
-
-    private int parseTemperature(String temperature) {
-        if (temperature.contains("*")) {
-            temperature = temperature.substring(0, temperature.indexOf("*"));
-        }
-        return Integer.valueOf(temperature);
+        dailyTemperature.setTemperatureSpread();
     }
 
     public List<DailyTemperature> getDailyTemperatureDataList() {
