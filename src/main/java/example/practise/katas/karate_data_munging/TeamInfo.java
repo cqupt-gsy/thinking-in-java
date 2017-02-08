@@ -1,6 +1,6 @@
 package example.practise.katas.karate_data_munging;
 
-public class TeamInfo {
+public class TeamInfo implements Comparable {
     private String teamName;
     private int scored;
     private int againstScored;
@@ -30,5 +30,11 @@ public class TeamInfo {
 
     public void setScoreSpread() {
         this.scoreSpread = Math.abs(this.scored - this.againstScored);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        TeamInfo teamInfo = (TeamInfo) o;
+        return scoreSpread < teamInfo.scoreSpread ? 1 : 0;
     }
 }
