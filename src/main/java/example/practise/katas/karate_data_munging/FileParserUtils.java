@@ -72,20 +72,23 @@ public class FileParserUtils {
         return ((List<String>) readLines(new File(
                 this.getClass().getClassLoader().getResource(filename).getPath()), encoding))
                 .stream()
-                .filter(content -> !isBlank(content));
+                .filter(content -> !isBlank(content))
+                .filter(this::isSkipLine)
+                .filter(this::parseLine);
     }
 
     boolean isSkipLine(String content) {
         return !(content.contains(skipHead) || content.contains(skipTail));
     }
 
-    void parseLine(String content) {
+    boolean parseLine(String content) {
         final List<String> lineItems = Arrays.stream(content.trim().split(delimiter))
                 .filter(item -> !isBlank(item))
                 .collect(Collectors.toList());
         setFirstColumnInfo(lineItems.get(firstColumn));
         setSecondColumnInfo(lineItems.get(secondColumn));
         setThirdColumnInfo(lineItems.get(thirdColumn));
+        return true;
     }
 
     public void setFirstColumnInfo(String firstColumnInfo) {

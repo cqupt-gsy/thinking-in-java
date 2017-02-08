@@ -28,14 +28,11 @@ public class SmallestTemperatureSpread {
 
     private List<DailyTemperature> buildDailyTemperatureDataList() throws IOException {
         return fileParserUtils.readFile()
-                .filter(fileParserUtils::isSkipLine)
-                .map(this::buildDailyTemperature)
+                .map((content) -> buildDailyTemperature())
                 .collect(Collectors.toList());
     }
 
-    private DailyTemperature buildDailyTemperature(String content) {
-        fileParserUtils.parseLine(content);
-
+    private DailyTemperature buildDailyTemperature() {
         return new DailyTemperature(
                 Integer.valueOf(fileParserUtils.getFirstColumnInfo()),
                 fileParserUtils.getSecondColumnInfo(),

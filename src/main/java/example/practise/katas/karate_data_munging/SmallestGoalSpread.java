@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
 public class SmallestGoalSpread {
     private final String FILENAME = "football.dat";
     private final String SKIP_HEAD = "Team";
@@ -35,15 +33,11 @@ public class SmallestGoalSpread {
 
     private List<TeamInfo> buildTeamInfoList() throws IOException {
         return fileParserUtils.readFile()
-                .filter(content -> !isBlank(content))
-                .filter(fileParserUtils::isSkipLine)
-                .map(this::buildTeamInfo)
+                .map((content) -> buildTeamInfo())
                 .collect(Collectors.toList());
     }
 
-    private TeamInfo buildTeamInfo(String content) {
-        fileParserUtils.parseLine(content);
-
+    private TeamInfo buildTeamInfo() {
         return new TeamInfo(
                 fileParserUtils.getFirstColumnInfo(),
                 Integer.valueOf(fileParserUtils.getSecondColumnInfo()),
