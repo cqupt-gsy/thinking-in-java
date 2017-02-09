@@ -2,51 +2,35 @@ package example.practise.katas.karate_data_munging;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SmallestGoalSpread {
     private final String FILENAME = "football.dat";
     private final String SKIP_HEAD = "Team";
     private final String SKIP_TAIL = "--";
-    private final String DELIMITER = " ";
     private final int FIRST_COLUMN = 1;
     private final int SECOND_COLUMN = 6;
     private final int THIRD_COLUMN = 8;
     private final FileParserUtils fileParserUtils;
-    private List<TeamInfo> teamInfoList;
+    private final ComparatorFactory comparatorFactory;
+    private List<FileContent> fileContentList;
 
     public SmallestGoalSpread() {
         fileParserUtils = new FileParserUtils(FILENAME, SKIP_HEAD, SKIP_TAIL, FIRST_COLUMN, SECOND_COLUMN, THIRD_COLUMN);
+        comparatorFactory = new ComparatorFactory();
     }
 
-    public TeamInfo calculateSmallestGoalSpread() throws IOException {
-        teamInfoList = buildTeamInfoList();
-        teamInfoList.forEach(TeamInfo::setScoreSpread);
-        return teamInfoList
+    public FileContent calculateSmallestGoalSpread() throws IOException {
+        fileContentList = fileParserUtils.readFile();
+        fileContentList.forEach(FileContent::setResult);
+        return fileContentList
                 .stream()
-                .reduce((firstTeamInfo, secondTeamInfo)
-                        -> firstTeamInfo.getScoreSpread() < secondTeamInfo.getScoreSpread()
-                        ? firstTeamInfo : secondTeamInfo)
+                .reduce(comparatorFactory.getMinimalComparator())
                 .get();
 
     }
 
-    private List<TeamInfo> buildTeamInfoList() throws IOException {
-        return fileParserUtils.readFile()
-                .map((content) -> buildTeamInfo())
-                .collect(Collectors.toList());
-    }
-
-    private TeamInfo buildTeamInfo() {
-        return new TeamInfo(
-                fileParserUtils.getFirstColumnInfo(),
-                Integer.valueOf(fileParserUtils.getSecondColumnInfo()),
-                Integer.valueOf(fileParserUtils.getThirdColumnInfo()));
-    }
-
-
-    public List<TeamInfo> getTeamInfoList() {
-        return teamInfoList;
+    public List<FileContent> getTeamInfoList() {
+        return fileContentList;
     }
 
 }

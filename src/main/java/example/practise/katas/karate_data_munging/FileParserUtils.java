@@ -1,3 +1,14 @@
+/*
+* 心得：
+* 1. 解决问题永远不要想太远，重复利用的事情留给重构来做（不要过度设计）
+* 2. 重构时一定要以解决坏味道为目的，不需要套用设计模式，设计模式是重构出来的
+* 3. 这次重构手法不熟练，需要继续练习
+* 4. 这次重构刚开始就想着套用设计模式（导致重构步伐太大，并发现不可用），是错误的，需要引起注意
+* 5. 这次重构的步伐跨度有点大，下次要小步重构（不要太小，找到自己合适的步伐即可）
+*/
+
+
+
 package example.practise.katas.karate_data_munging;
 
 import java.io.File;
@@ -5,7 +16,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.apache.commons.io.FileUtils.readLines;
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -16,10 +26,6 @@ public class FileParserUtils {
 
     private String skipHead;
     private String skipTail;
-
-    private String firstColumnInfo;
-    private String secondColumnInfo;
-    private String thirdColumnInfo;
 
     private int firstColumn = 0;
     private int secondColumn = 1;
@@ -49,69 +55,24 @@ public class FileParserUtils {
     }
 
 
-    public FileParserUtils(
-            String filename,
-            String skipHead,
-            String skipTail,
-            String encoding,
-            String delimiter,
-            int firstColumn,
-            int secondColumn,
-            int thirdColumn) {
-        this.encoding = encoding;
-        this.filename = filename;
-        this.skipHead = skipHead;
-        this.skipTail = skipTail;
-        this.delimiter = delimiter;
-        this.firstColumn = firstColumn;
-        this.secondColumn = secondColumn;
-        this.thirdColumn = thirdColumn;
-    }
-
-    Stream<String> readFile() throws IOException {
+    List<FileContent> readFile() throws IOException {
         return ((List<String>) readLines(new File(
                 this.getClass().getClassLoader().getResource(filename).getPath()), encoding))
                 .stream()
-                .filter(content -> !isBlank(content))
-                .filter(this::isSkipLine)
-                .filter(this::parseLine);
+                .filter(content -> !isBlank(content) && this.isSkipLine(content))
+                .map(this::parseLine)
+                .collect(Collectors.toList());
     }
 
     boolean isSkipLine(String content) {
         return !(content.contains(skipHead) || content.contains(skipTail));
     }
 
-    boolean parseLine(String content) {
+    FileContent parseLine(String content) {
         final List<String> lineItems = Arrays.stream(content.trim().split(delimiter))
                 .filter(item -> !isBlank(item))
                 .collect(Collectors.toList());
-        setFirstColumnInfo(lineItems.get(firstColumn));
-        setSecondColumnInfo(lineItems.get(secondColumn));
-        setThirdColumnInfo(lineItems.get(thirdColumn));
-        return true;
+        return new FileContent(lineItems.get(firstColumn), lineItems.get(secondColumn), lineItems.get(thirdColumn));
     }
 
-    public void setFirstColumnInfo(String firstColumnInfo) {
-        this.firstColumnInfo = firstColumnInfo;
-    }
-
-    public String getFirstColumnInfo() {
-        return firstColumnInfo;
-    }
-
-    public void setSecondColumnInfo(String secondColumnInfo) {
-        this.secondColumnInfo = secondColumnInfo;
-    }
-
-    public String getSecondColumnInfo() {
-        return secondColumnInfo;
-    }
-
-    public void setThirdColumnInfo(String thirdColumnInfo) {
-        this.thirdColumnInfo = thirdColumnInfo;
-    }
-
-    public String getThirdColumnInfo() {
-        return thirdColumnInfo;
-    }
 }

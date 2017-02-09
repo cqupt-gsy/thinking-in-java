@@ -22,21 +22,21 @@ public class SmallestTemperatureSpreadTest {
         smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 
         //Then
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().size()).isEqualTo(30);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(0).getDay()).isNotEqualTo("Dy");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(0).getDay()).isEqualTo(1);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(0).getMaxTemperature()).isEqualTo("88");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(0).getMinTemperature()).isEqualTo("59");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(29).getDay()).isNotEqualTo("mo");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(29).getDay()).isEqualTo(30);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(29).getMaxTemperature()).isEqualTo("90");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(29).getMinTemperature()).isEqualTo("45");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(8).getDay()).isEqualTo(9);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(8).getMaxTemperature()).isEqualTo("86");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(8).getMinTemperature()).isEqualTo("32*");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(25).getDay()).isEqualTo(26);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(25).getMaxTemperature()).isEqualTo("97*");
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(25).getMinTemperature()).isEqualTo("64");
+        assertThat(smallestTemperatureSpread.getFileContentList().size()).isEqualTo(30);
+        assertThat(smallestTemperatureSpread.getFileContentList().get(0).getFirstColumn()).isNotEqualTo("Dy");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(0).getFirstColumn()).isEqualTo("1");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(0).getSecondColumn()).isEqualTo("88");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(0).getThirdColumn()).isEqualTo("59");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(29).getFirstColumn()).isNotEqualTo("mo");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(29).getFirstColumn()).isEqualTo("30");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(29).getSecondColumn()).isEqualTo("90");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(29).getThirdColumn()).isEqualTo("45");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(8).getFirstColumn()).isEqualTo("9");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(8).getSecondColumn()).isEqualTo("86");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(8).getThirdColumn()).isEqualTo("32*");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(25).getFirstColumn()).isEqualTo("26");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(25).getSecondColumn()).isEqualTo("97*");
+        assertThat(smallestTemperatureSpread.getFileContentList().get(25).getThirdColumn()).isEqualTo("64");
 
     }
 
@@ -46,19 +46,19 @@ public class SmallestTemperatureSpreadTest {
         smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 
         //Then
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(0).getTemperatureSpread()).isEqualTo(29);
-        assertThat(smallestTemperatureSpread.getDailyTemperatureDataList().get(29).getTemperatureSpread()).isEqualTo(45);
+        assertThat(smallestTemperatureSpread.getFileContentList().get(0).getResult()).isEqualTo(29);
+        assertThat(smallestTemperatureSpread.getFileContentList().get(29).getResult()).isEqualTo(45);
     }
 
     @Test
     public void shouldReturnSmallestTemperatureSpread() throws IOException {
         //When
-        DailyTemperature dailyTemperature = smallestTemperatureSpread.calculateSmallestTemperatureSpread();
+        FileContent fileContent = smallestTemperatureSpread.calculateSmallestTemperatureSpread();
 
         //Then
-        assertThat(dailyTemperature.getDay()).isEqualTo(14);
-        assertThat(dailyTemperature.getMaxTemperature()).isEqualTo("61");
-        assertThat(dailyTemperature.getMinTemperature()).isEqualTo("59");
-        assertThat(dailyTemperature.getTemperatureSpread()).isEqualTo(2);
+        assertThat(fileContent.getFirstColumn()).isEqualTo("14");
+        assertThat(fileContent.getSecondColumn()).isEqualTo("61");
+        assertThat(fileContent.getThirdColumn()).isEqualTo("59");
+        assertThat(fileContent.getResult()).isEqualTo(2);
     }
 }

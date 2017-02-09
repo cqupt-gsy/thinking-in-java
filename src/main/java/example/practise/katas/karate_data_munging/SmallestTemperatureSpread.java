@@ -2,45 +2,31 @@ package example.practise.katas.karate_data_munging;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SmallestTemperatureSpread {
     private final String FILENAME = "weather.dat";
     private final String SKIP_HEAD = "Dy";
     private final String SKIP_TAIL = "mo";
     private final FileParserUtils fileParserUtils;
-    private List<DailyTemperature> dailyTemperatureDataList;
+    private final ComparatorFactory comparatorFactory;
+    private List<FileContent> fileContentList;
 
     public SmallestTemperatureSpread() {
         fileParserUtils = new FileParserUtils(FILENAME, SKIP_HEAD, SKIP_TAIL);
+        comparatorFactory = new ComparatorFactory();
     }
 
-    public DailyTemperature calculateSmallestTemperatureSpread() throws IOException {
-        dailyTemperatureDataList = buildDailyTemperatureDataList();
-        dailyTemperatureDataList.forEach(DailyTemperature::setTemperatureSpread);
-        return dailyTemperatureDataList
+    public FileContent calculateSmallestTemperatureSpread() throws IOException {
+        fileContentList = fileParserUtils.readFile();
+        fileContentList.forEach(FileContent::setResult);
+        return fileContentList
                 .stream()
-                .reduce((firstDailyTemperature, secondDailyTemperature)
-                        -> firstDailyTemperature.getTemperatureSpread() < secondDailyTemperature.getTemperatureSpread()
-                        ? firstDailyTemperature : secondDailyTemperature)
+                .reduce(comparatorFactory.getMinimalComparator())
                 .get();
     }
 
-    private List<DailyTemperature> buildDailyTemperatureDataList() throws IOException {
-        return fileParserUtils.readFile()
-                .map((content) -> buildDailyTemperature())
-                .collect(Collectors.toList());
-    }
-
-    private DailyTemperature buildDailyTemperature() {
-        return new DailyTemperature(
-                Integer.valueOf(fileParserUtils.getFirstColumnInfo()),
-                fileParserUtils.getSecondColumnInfo(),
-                fileParserUtils.getThirdColumnInfo());
-    }
-
-    public List<DailyTemperature> getDailyTemperatureDataList() {
-        return dailyTemperatureDataList;
+    public List<FileContent> getFileContentList() {
+        return fileContentList;
     }
 
 }

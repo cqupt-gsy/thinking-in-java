@@ -23,13 +23,13 @@ public class SmallestGoalSpreadTest {
 
         //Then
         assertThat(smallestGoalSpread.getTeamInfoList().size()).isEqualTo(20);
-        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getTeamName()).isNotEqualTo("Team");
-        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getTeamName()).isEqualTo("Arsenal");
-        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getScored()).isEqualTo(79);
-        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getAgainstScored()).isEqualTo(36);
-        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getTeamName()).isEqualTo("Leicester");
-        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getScored()).isEqualTo(30);
-        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getAgainstScored()).isEqualTo(64);
+        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getFirstColumn()).isNotEqualTo("Team");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getFirstColumn()).isEqualTo("Arsenal");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getSecondColumn()).isEqualTo("79");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getThirdColumn()).isEqualTo("36");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getFirstColumn()).isEqualTo("Leicester");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getSecondColumn()).isEqualTo("30");
+        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getThirdColumn()).isEqualTo("64");
     }
 
     @Test
@@ -38,20 +38,20 @@ public class SmallestGoalSpreadTest {
         smallestGoalSpread.calculateSmallestGoalSpread();
 
         //Then
-        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getScoreSpread()).isEqualTo(43);
-        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getScoreSpread()).isEqualTo(34);
+        assertThat(smallestGoalSpread.getTeamInfoList().get(0).getResult()).isEqualTo(43);
+        assertThat(smallestGoalSpread.getTeamInfoList().get(19).getResult()).isEqualTo(34);
     }
 
     @Test
     public void shouldReturnSmallestTemperatureSpread() throws IOException {
         //When
-        TeamInfo teamInfo = smallestGoalSpread.calculateSmallestGoalSpread();
+        FileContent fileContent = smallestGoalSpread.calculateSmallestGoalSpread();
 
         //Then
-        assertThat(teamInfo.getTeamName()).isEqualTo("Aston_Villa");
-        assertThat(teamInfo.getScored()).isEqualTo(46);
-        assertThat(teamInfo.getAgainstScored()).isEqualTo(47);
-        assertThat(teamInfo.getScoreSpread()).isEqualTo(1);
+        assertThat(fileContent.getFirstColumn()).isEqualTo("Aston_Villa");
+        assertThat(fileContent.getSecondColumn()).isEqualTo("46");
+        assertThat(fileContent.getThirdColumn()).isEqualTo("47");
+        assertThat(fileContent.getResult()).isEqualTo(1);
     }
 
 }
