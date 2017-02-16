@@ -20,7 +20,7 @@ public class AnagramsGenerator {
         fileParserUtils.readFile(FILENAME)
                 .forEach(line -> {
                     String sortedLine = Arrays
-                            .stream(line.toLowerCase().split(""))
+                            .stream(line.split(""))
                             .sorted()
                             .collect(Collectors.joining());
                     List<String> anagrams = result.get(sortedLine);
