@@ -17,27 +17,22 @@ public class AnagramsGenerator {
 
     public Map<String, List<String>> generateAnagrams() throws IOException {
         Map<String, List<String>> result = new HashMap<>();
-        Map<String, List<String>> finalResult = new HashMap<>();
         fileParserUtils.readFile(FILENAME)
                 .forEach(line -> {
                     String sortedLine = Arrays
-                            .stream(line.toLowerCase().replace(" ", "").split(""))
+                            .stream(line.toLowerCase().split(""))
                             .sorted()
                             .collect(Collectors.joining());
                     List<String> anagrams = result.get(sortedLine);
-                    if (anagrams != null) {
-                        anagrams.add(line);
-                    } else {
-                        List<String> newAnagrams = new ArrayList<>();
-                        newAnagrams.add(line);
-                        result.put(sortedLine, newAnagrams);
+                    if (anagrams == null) {
+                        anagrams = new ArrayList<>();
                     }
+                    anagrams.add(line);
+                    result.put(sortedLine, anagrams);
                 });
-        result.keySet().forEach(key -> {
-            if (result.get(key).size() > 1) {
-                finalResult.put(key, result.get(key));
-            }
-        });
-        return finalResult;
+        return result.entrySet()
+                .stream()
+                .filter(e -> e.getValue().size() > 1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }
