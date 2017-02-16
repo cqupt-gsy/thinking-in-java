@@ -5,6 +5,7 @@
 * 3. 这次重构手法不熟练，需要继续练习
 * 4. 这次重构刚开始就想着套用设计模式（导致重构步伐太大，并发现不可用），是错误的，需要引起注意
 * 5. 这次重构的步伐跨度有点大，下次要小步重构（不要太小，找到自己合适的步伐即可）
+* 6. 程序出现重复的最主要原因是数据结构的不同，尤其是用Model对象时，所以写代码前一定要将数据结构抽象好
 */
 
 
@@ -33,6 +34,9 @@ public class FileParserUtils {
     private String delimiter = " ";
     private String encoding = "utf-8";
 
+    public FileParserUtils() {
+    }
+
     public FileParserUtils(String filename, String skipHead, String skipTail) {
         this.filename = filename;
         this.skipHead = skipHead;
@@ -54,14 +58,16 @@ public class FileParserUtils {
         this.thirdColumn = thirdColumn;
     }
 
-
-    List<FileContent> readFile() throws IOException {
-        return ((List<String>) readLines(new File(
-                this.getClass().getClassLoader().getResource(filename).getPath()), encoding))
+    public List<FileContent> readFile() throws IOException {
+        return readFile(filename)
                 .stream()
                 .filter(content -> !isBlank(content) && this.isSkipLine(content))
                 .map(this::parseLine)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> readFile(String filename) throws IOException {
+        return readLines(new File(this.getClass().getClassLoader().getResource(filename).getPath()), encoding);
     }
 
     boolean isSkipLine(String content) {
