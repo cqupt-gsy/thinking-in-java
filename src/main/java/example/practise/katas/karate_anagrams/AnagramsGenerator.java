@@ -17,19 +17,18 @@ public class AnagramsGenerator {
 
     public Map<String, List<String>> generateAnagrams() throws IOException {
         Map<String, List<String>> result = new HashMap<>();
-        fileParserUtils.readFile(FILENAME)
-                .forEach(line -> {
-                    String sortedLine = Arrays
-                            .stream(line.split(""))
-                            .sorted()
-                            .collect(Collectors.joining());
-                    List<String> anagrams = result.get(sortedLine);
-                    if (anagrams == null) {
-                        anagrams = new ArrayList<>();
-                    }
-                    anagrams.add(line);
-                    result.put(sortedLine, anagrams);
-                });
+        fileParserUtils.readFile(FILENAME).forEach(line -> {
+            String sortedLine = Arrays
+                    .stream(line.split(""))
+                    .sorted()
+                    .collect(Collectors.joining());
+            List<String> anagrams = result.get(sortedLine);
+            if (anagrams == null) {
+                anagrams = new ArrayList<>();
+            }
+            anagrams.add(line);
+            result.put(sortedLine, anagrams);
+        });
         return result.entrySet()
                 .stream()
                 .filter(e -> e.getValue().size() > 1)
