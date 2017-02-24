@@ -77,4 +77,34 @@ public class SalesManagerTest {
         assertThat(totalPrice).isEqualTo(90.0);
 
     }
+
+    @Test
+    public void shouldReturnTotalPriceOfProductsOnlyWithDiscount() {
+        //When
+        double totalPrice = salesManager.calculateTotalPrice("aabab");
+
+        //Then
+        assertThat(totalPrice).isEqualTo(175.00);
+
+    }
+
+    @Test
+    public void shouldReturnTotalPriceOfProducts() {
+        //When
+        double totalPrice = salesManager.calculateTotalPrice("aaccbadcdb");
+
+        //Then
+        assertThat(totalPrice).isEqualTo(265.00);
+
+    }
+
+    @Test
+    public void shouldReturnTotalPriceOfProductsWithAllKindProductsWithoutDiscount() {
+        //When
+        double totalPrice = salesManager.calculateTotalPrice("aaccdcdb");
+
+        //Then
+        assertThat(totalPrice).isEqualTo(220.00);
+
+    }
 }
