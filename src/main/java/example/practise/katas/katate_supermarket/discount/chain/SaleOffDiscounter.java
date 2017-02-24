@@ -1,21 +1,20 @@
 package example.practise.katas.katate_supermarket.discount.chain;
 
+import example.practise.katas.katate_supermarket.discount.chain.exception.NoSuchRuleException;
 import example.practise.katas.katate_supermarket.items.Product;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static example.practise.katas.katate_supermarket.discount.chain.DiscounterRulePattern.SALE_OFF_PATTERN;
-import static java.lang.Double.*;
+import static java.lang.Double.parseDouble;
 
 public class SaleOffDiscounter implements Discounter {
 
-    private Pattern pattern = Pattern.compile(SALE_OFF_PATTERN);
+    private final Pattern pattern;
     private Discounter discounter;
 
-    @Override
-    public void setDiscounter(Discounter discounter) {
-        this.discounter = discounter;
+    public SaleOffDiscounter(Pattern pattern) {
+        this.pattern = pattern;
     }
 
     @Override
@@ -27,6 +26,11 @@ public class SaleOffDiscounter implements Discounter {
         if (discounter != null) {
             discounter.calculatePrice(product);
         }
-        throw new RuntimeException("No such discounter rule");
+        throw new NoSuchRuleException();
+    }
+
+    @Override
+    public void setDiscounter(Discounter discounter) {
+        this.discounter = discounter;
     }
 }

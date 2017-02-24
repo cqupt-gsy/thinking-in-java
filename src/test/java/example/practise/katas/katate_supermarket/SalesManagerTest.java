@@ -18,7 +18,7 @@ public class SalesManagerTest {
         final Map<String, Product> products = salesManager.getProducts();
 
         //Then
-        assertThat(products.size()).isEqualTo(4);
+        assertThat(products.size()).isEqualTo(6);
         assertThat(products.get("A"))
                 .hasFieldOrPropertyWithValue("name", "A")
                 .hasFieldOrPropertyWithValue("price", 50.0)

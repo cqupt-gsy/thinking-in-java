@@ -13,10 +13,7 @@ public class NoneDiscounter implements Discounter {
         if (isBlank(product.getDiscountRule())) {
             return product.getNumber() * product.getPrice();
         }
-        if (discounter != null) {
-            return discounter.calculatePrice(product);
-        }
-        throw new RuntimeException("No such discounter rule");
+        return discounter.calculatePrice(product);
     }
 
     @Override
