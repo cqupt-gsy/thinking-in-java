@@ -1,7 +1,6 @@
 package example.practise.katas.katate_supermarket;
 
 import example.practise.katas.katate_supermarket.items.Product;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -12,10 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SalesManagerTest {
 
     private SalesManager salesManager = new SalesManager("product.yml");
-
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void shouldReturnProductList() {
@@ -71,5 +66,15 @@ public class SalesManagerTest {
 
         //Then
         assertThat(inputProducts.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnTotalPriceOfProductsWithoutDiscount() {
+        //When
+        double totalPrice = salesManager.calculateTotalPrice("dcdcc");
+
+        //Then
+        assertThat(totalPrice).isEqualTo(90.0);
+
     }
 }
