@@ -17,3 +17,13 @@
     price: 15.00
     discountRule:
     number: 0
+
+  - name: E
+    price: 40.00
+    discountRule: 50% sale off
+    number: 0
+
+  - name: F
+    price: 10.00
+    discountRule: 90% sale off
+    number: 0

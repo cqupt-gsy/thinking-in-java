@@ -107,4 +107,14 @@ public class SalesManagerTest {
         assertThat(totalPrice).isEqualTo(220.00);
 
     }
+
+    @Test
+    public void shouldReturnTotalPriceOfProductsWithNewDiscountRule() {
+        //When
+        double totalPrice = salesManager.calculateTotalPrice("effe");
+
+        //Then
+        assertThat(totalPrice).isEqualTo(58.00);
+
+    }
 }
