@@ -13,6 +13,12 @@ dependencies {
     compile 'org.yaml:snakeyaml:1.18'
     compile 'org.springframework:spring-core:4.3.6.RELEASE'
     compile 'org.springframework:spring-beans:4.3.6.RELEASE'
+    compile 'net.sf.jung:jung-api:2.1.1'
+    compile 'net.sf.jung:jung-algorithms:2.1.1'
+    compile 'net.sf.jung:jung-graph-impl:2.1.1'
+    compile 'com.scalified:tree:0.2.4'
+    compile 'org.jgrapht:jgrapht-core:1.0.1'
+
 
     testCompile 'org.mockito:mockito-core:2.2.10'
     testCompile 'junit:junit:4.12'
