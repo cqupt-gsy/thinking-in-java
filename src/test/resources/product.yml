@@ -1,0 +1,29 @@
+  - name: A
+    price: 50.00
+    discountRule: 3 for 130
+    number: 0
+
+  - name: B
+    price: 30.00
+    discountRule: 2 for 45
+    number: 0
+
+  - name: C
+    price: 20.00
+    discountRule:
+    number: 0
+
+  - name: D
+    price: 15.00
+    discountRule:
+    number: 0
+
+  - name: E
+    price: 40.00
+    discountRule: 50% sale off
+    number: 0
+
+  - name: F
+    price: 10.00
+    discountRule: 90% sale off
+    number: 0

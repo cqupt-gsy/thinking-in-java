@@ -12,7 +12,7 @@ public class YAMLHelper {
     public static Map<String, Product> initProducts(String filename) {
         final Yaml yaml = new Yaml();
         final  List<Map<String, Object>> products = (List) yaml.load(
-                YAMLHelper.class.getResourceAsStream(filename));
+                YAMLHelper.class.getClassLoader().getResourceAsStream(filename));
         return  products
                 .stream()
                 .map((Map<String, Object> product) -> new Product(

@@ -37,10 +37,10 @@ sourceSets {
     }
     test{
         java{
-            srcDirs = ['src/validatestrategy/java']
+            srcDirs = ['src/test/java']
         }
         resources{
-            srcDirs = ['src/validatestrategy/resources']
+            srcDirs = ['src/test/resources']
         }
     }
 }
