@@ -3,6 +3,7 @@ package threads.delegation;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +53,30 @@ public class DelegatingTest {
             System.out.println("thread2 id: 4" + " point: " + point);
         });
         thread2.start();
+    }
 
+    @Test
+    public void testForMapOperation() {
+        //Map如果通过对象引用改变内容，则无需put back就可以生效，但是如果是原子型的类型对象则需要put back才会生效
+        Map<String, Point> mainMap = new HashMap<>();
+        mainMap.put("1", new Point(1,1));
+
+        Map<String, Point> copyMap = Collections.unmodifiableMap(mainMap);
+
+        mainMap.get("1").set(1, 2);
+
+        System.out.println("copy map's value: " + copyMap.get("1"));
+        System.out.println("main map's value: " + mainMap.get("1"));
+
+
+        Map<String, String> mainStringMap = new HashMap<>();
+        mainStringMap.put("1", "1");
+
+        Map<String, String> copyStringMap = Collections.unmodifiableMap(mainStringMap);
+
+        mainStringMap.get("1").replace("1", "2");
+
+        System.out.println("copy string map's value: " + copyStringMap.get("1"));
+        System.out.println("main string map's value: " + mainStringMap.get("1"));
     }
 }
