@@ -4,6 +4,7 @@ public class ProtoType implements Cloneable {
     private String name;
     private int value;
     private Person person;
+    private Person person_1;
 
     public void setName(String name) {
         this.name = name;
@@ -32,5 +33,13 @@ public class ProtoType implements Cloneable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public Person getPerson_1() {
+        return person_1;
+    }
+
+    public void setPerson_1(Person person_1) {
+        this.person_1 = new Person(person_1.getName(), person_1.getValue());
     }
 }

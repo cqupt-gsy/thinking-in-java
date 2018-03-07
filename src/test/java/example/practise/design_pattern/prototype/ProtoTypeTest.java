@@ -44,7 +44,10 @@ public class ProtoTypeTest {
     @Test
     public void shouldReturnACopyOfProtoTypeClassWithDifferentReferenceValue() throws CloneNotSupportedException {
         //Given
-        protoType.setPerson(new Person("gsy", 12));
+        Person gsy = new Person("gsy", 12);
+        protoType.setPerson(gsy);
+        Person wh = new Person("wh", 24);
+        protoType.setPerson_1(wh);
 
         //When
         ProtoType cloneProtoType = (ProtoType) protoType.clone();
@@ -52,13 +55,23 @@ public class ProtoTypeTest {
         //Then
         assertThat(cloneProtoType.getPerson().getName(), is("gsy"));
         assertThat(cloneProtoType.getPerson().getValue(), is(12));
+        assertThat(cloneProtoType.getPerson_1().getName(), is("wh"));
+        assertThat(cloneProtoType.getPerson_1().getValue(), is(24));
 
-        cloneProtoType.setPerson(new Person("hello", 56));
+        gsy.setName("hello");
+        gsy.setAge(11);
+        wh.setName("world");
+        wh.setAge(22);
+
+        assertThat(protoType.getPerson().getName(), is("hello"));
+        assertThat(protoType.getPerson().getValue(), is(11));
+        assertThat(protoType.getPerson_1().getName(), is("wh"));
+        assertThat(protoType.getPerson_1().getValue(), is(24));
 
         assertThat(cloneProtoType.getPerson().getName(), is("hello"));
-        assertThat(cloneProtoType.getPerson().getValue(), is(56));
-        assertThat(protoType.getPerson().getName(), is("gsy"));
-        assertThat(protoType.getPerson().getValue(), is(12));
+        assertThat(cloneProtoType.getPerson().getValue(), is(11));
+        assertThat(cloneProtoType.getPerson_1().getName(), is("wh"));
+        assertThat(cloneProtoType.getPerson_1().getValue(), is(24));
 
     }
 }
