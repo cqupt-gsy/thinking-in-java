@@ -1,7 +1,0 @@
-package example.practise.design_pattern.facade;
-
-public class OldClassTwo {
-    public String dealWithDatabase() {
-        return null;
-    }
-}
