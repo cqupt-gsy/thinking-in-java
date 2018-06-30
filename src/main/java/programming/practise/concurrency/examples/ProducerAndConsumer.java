@@ -62,9 +62,10 @@ public class ProducerAndConsumer {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        sharedList.notify();
                     }
                     System.out.println("Consuming item: " + sharedList.remove(0));
-                    sharedList.notify();
                 }
             }
         }
@@ -76,14 +77,23 @@ public class ProducerAndConsumer {
 
     public static void main(String args[]) throws InterruptedException {
         List<String> sharedList = new ArrayList<>();
-        final Producer producer = new Producer(sharedList);
-        final Consumer consumer = new Consumer(sharedList);
-        new Thread(producer).start();
-        new Thread(consumer).start();
+        final Producer producer1 = new Producer(sharedList);
+        final Producer producer2 = new Producer(sharedList);
+        final Producer producer3 = new Producer(sharedList);
+        final Consumer consumer1 = new Consumer(sharedList);
+        final Consumer consumer2 = new Consumer(sharedList);
+        new Thread(producer1).start();
+        new Thread(producer2).start();
+        new Thread(producer3).start();
+        new Thread(consumer1).start();
+        new Thread(consumer2).start();
 
         Thread.sleep(2);
-        producer.setStop(true);
-        consumer.setStop(true);
+        producer1.setStop(true);
+        producer2.setStop(true);
+        producer3.setStop(true);
+        consumer1.setStop(true);
+        consumer2.setStop(true);
     }
 
 }

@@ -5,31 +5,32 @@ import java.util.List;
 
 public class BlockQueueExample {
 
-    private int size;
-    private final List<Integer> arrays = new ArrayList<>();
+    private volatile int size;
+    private List<Integer> arrays = new ArrayList<>();
 
     public BlockQueueExample(int size) {
         this.size = size;
     }
 
     public void offer(int value) throws InterruptedException {
-        synchronized (this) {
+        synchronized (arrays) {
             if (arrays.size() == size) {
                 System.out.println("Queue is full, need to consuming!");
-                wait();
+                arrays.wait();
             }
             arrays.add(value);
-            notify();
+            arrays.notify();
         }
     }
 
     public int poll() throws InterruptedException {
-        synchronized (this) {
+        synchronized (arrays) {
             if (arrays.isEmpty()) {
                 System.out.println("Queue is empty, need to producing!");
-                wait();
+                arrays.wait();
+            } else {
+                arrays.notify();
             }
-            notify();
             return arrays.remove(0);
         }
     }
@@ -38,11 +39,32 @@ public class BlockQueueExample {
         BlockQueueExample blockQueue = new BlockQueueExample(100);
 
         new Thread(() -> {
-            for (int i = 0; i < 10000; i++) {
+            int value = 0;
+            try {
+                while (value++ < 50) {
+                    System.out.println(Thread.currentThread().getName() + " consuming: " + blockQueue.poll());
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            int value = 0;
+            try {
+                while (value++ < 50) {
+                    System.out.println(Thread.currentThread().getName() + " consuming: " + blockQueue.poll());
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
                 try {
-                    Thread.sleep(10);
-                    System.out.println(Thread.currentThread().getName() + " producing: " + i);
                     blockQueue.offer(i);
+                    System.out.println(Thread.currentThread().getName() + " producing: " + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -50,15 +72,15 @@ public class BlockQueueExample {
         }).start();
 
         new Thread(() -> {
-            int value;
-            try {
-                while ((value = blockQueue.poll()) != 9999) {
-                    System.out.println(Thread.currentThread().getName() + " consuming: " + value);
-                    Thread.sleep(1);
+            for (int i = 0; i < 100; i++) {
+                try {
+                    blockQueue.offer(i);
+                    System.out.println(Thread.currentThread().getName() + " producing: " + i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }).start();
+
     }
 }
