@@ -2,6 +2,7 @@ package programming.practise.concurrency.method;
 
 public class JoinMethod {
 
+    //join操作表示当前线程必须等join的线程先执行完才开始执行
     static class JoinThread implements Runnable {
 
         private final String name;
