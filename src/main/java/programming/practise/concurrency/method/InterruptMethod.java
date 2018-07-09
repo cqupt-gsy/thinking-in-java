@@ -46,6 +46,5 @@ public class InterruptMethod {
         threadA.start();
         Thread.sleep(100);
         threadA.interrupt();
-        Thread.sleep(1);
     }
 }
