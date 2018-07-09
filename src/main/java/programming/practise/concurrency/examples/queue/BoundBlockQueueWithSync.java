@@ -18,7 +18,7 @@ public class BoundBlockQueueWithSync implements MyQueue{
     @Override
     public String take() throws InterruptedException {
         synchronized (queue) {
-            while (count == -1) {
+            while (count == -1) { //使用while循环的原因是怕信号丢失，当线程获取到锁之前，状态已经被其他线程改变了
                 System.out.println(Thread.currentThread().getName() + ": start take block with sync lock!");
                 queue.wait();
                 System.out.println(Thread.currentThread().getName() + ": release take block with sync lock!");
