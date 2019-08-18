@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/thinking-in-java.iml" filepath="$PROJECT_DIR$/.idea/modules/thinking-in-java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thinking-in-java_main.iml" filepath="$PROJECT_DIR$/.idea/modules/thinking-in-java_main.iml" group="thinking-in-java" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thinking-in-java_test.iml" filepath="$PROJECT_DIR$/.idea/modules/thinking-in-java_test.iml" group="thinking-in-java" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thinking-in-java.main.iml" filepath="$PROJECT_DIR$/.idea/modules/thinking-in-java.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thinking-in-java.test.iml" filepath="$PROJECT_DIR$/.idea/modules/thinking-in-java.test.iml" />
     </modules>
   </component>
 </project>
