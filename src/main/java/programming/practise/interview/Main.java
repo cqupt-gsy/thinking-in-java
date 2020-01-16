@@ -3,6 +3,7 @@ package programming.practise.interview;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//华为笔试
 public class Main {
 
     public static void main(String args[]) {
