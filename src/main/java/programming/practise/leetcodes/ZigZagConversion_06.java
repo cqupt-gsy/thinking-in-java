@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ZigZagConversion_06 {
 
+    // https://leetcode-cn.com/problems/zigzag-conversion/submissions/
     public String convert(String s, int numRows) {
         if (numRows == 1) {
             return s;
@@ -26,7 +27,7 @@ public class ZigZagConversion_06 {
         }
 
         StringBuilder zigZagString = new StringBuilder();
-        zigZagStringBuilders.forEach(zigZagStringBuilder -> zigZagString.append(zigZagStringBuilder.toString()));
+        zigZagStringBuilders.forEach(zigZagString::append);
         return zigZagString.toString();
     }
 }

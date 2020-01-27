@@ -1,6 +1,8 @@
 package programming.practise.leetcodes;
 
 public class ReverseInteger_07 {
+
+    // https://leetcode-cn.com/problems/reverse-integer/submissions/
     public int reverse(int x) {
         int[] separatedInteger = new int[10];
         int currentIndex = 0;

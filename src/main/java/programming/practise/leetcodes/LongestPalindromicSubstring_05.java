@@ -2,6 +2,7 @@ package programming.practise.leetcodes;
 
 public class LongestPalindromicSubstring_05 {
 
+    // https://leetcode-cn.com/problems/longest-palindromic-substring/
     public String longestPalindrome(String s) {
         int start = 0, end = 0;
         for (int index = 0; index < s.length(); ++index) {

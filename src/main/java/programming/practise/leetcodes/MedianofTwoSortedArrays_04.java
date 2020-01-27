@@ -2,6 +2,7 @@ package programming.practise.leetcodes;
 
 public class MedianofTwoSortedArrays_04 {
 
+    // https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int numsLength_1 = nums1.length;
         int numsLength_2 = nums2.length;
