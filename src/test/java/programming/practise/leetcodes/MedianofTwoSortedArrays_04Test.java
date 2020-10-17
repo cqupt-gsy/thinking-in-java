@@ -1,7 +1,7 @@
 package programming.practise.leetcodes;
 
 import org.junit.Test;
-import programming.practise.leetcodes.MedianofTwoSortedArrays_04;
+import programming.practise.leetcodes.older.MedianofTwoSortedArrays_04;
 
 import static org.junit.Assert.assertEquals;
 

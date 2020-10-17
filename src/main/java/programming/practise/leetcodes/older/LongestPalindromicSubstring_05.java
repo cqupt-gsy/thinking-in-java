@@ -1,4 +1,4 @@
-package programming.practise.leetcodes;
+package programming.practise.leetcodes.older;
 
 public class LongestPalindromicSubstring_05 {
 

@@ -1,6 +1,7 @@
 package programming.practise.leetcodes;
 
 import org.junit.Test;
+import programming.practise.leetcodes.older.TwoSum_01;
 
 import static org.junit.Assert.assertEquals;
 
