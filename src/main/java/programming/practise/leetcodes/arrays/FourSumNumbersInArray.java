@@ -10,25 +10,29 @@ public class FourSumNumbersInArray {
     }
 
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int a : A) {
-            for (int b : B) {
+        Map<Integer, Integer> firstMap = new HashMap<>();
+        Map<Integer, Integer> secondMap = new HashMap<>();
+        initMaps(firstMap, A, B);
+        initMaps(secondMap, C, D);
+
+        int result = 0;
+        for (Map.Entry<Integer, Integer> entry : firstMap.entrySet()) {
+            Integer key = -entry.getKey();
+            if (secondMap.containsKey(key)) {
+                result += entry.getValue() * secondMap.get(key);
+            }
+        }
+
+        return result;
+    }
+
+    private void initMaps(Map<Integer, Integer> map, int[] first, int[] second) {
+        for (int a : first) {
+            for (int b : second) {
                 int sum = a + b;
                 map.put(sum, map.getOrDefault(sum, 0) + 1);
             }
         }
-
-        int result = 0;
-        for (int c : C) {
-            for (int d : D) {
-                int sum = c + d;
-                if (map.containsKey(-sum)) {
-                    result += map.get(-sum);
-                }
-            }
-        }
-        return result;
     }
-
 
 }
