@@ -10,6 +10,8 @@ public class BadVersion {
         int begin = 1;
         int end = n;
         while (begin < end) {
+            // int mid = (begin + end) / 2 有整数溢出的情况可以用如下情况替代
+            // int mid = begin + (end - begin) / 2
             int index = begin + (end - begin) / 2;
             if (isBadVersion(index)) {
                 end = index;
